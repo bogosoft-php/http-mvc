@@ -1,0 +1,24 @@
+{
+  "name": "bogosoft/http-mvc",
+  "description": "A model-view-controller implementation of the bogosoft/http-routing library.",
+  "license": "MIT",
+  "autoload": {
+    "psr-4": {
+      "Bogosoft\\Http\\Mvc\\": "src/"
+    }
+  },
+  "autoload-dev": {
+    "psr-4": {
+      "Tests\\": "tests/"
+    }
+  },
+  "require": {
+    "bogosoft/http-routing": "^2.1",
+    "php": ">=7.4"
+  },
+  "require-dev": {
+    "phpunit/phpunit": "^9.2",
+    "guzzlehttp/psr7": "^1.6",
+    "nikic/fast-route": "^1.3"
+  }
+}
