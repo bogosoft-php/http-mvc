@@ -13,7 +13,7 @@
     }
   },
   "require": {
-    "bogosoft/http-routing": "^2.1",
+    "bogosoft/http-routing": "^3.0",
     "php": ">=7.4"
   },
   "require-dev": {

@@ -4,57 +4,23 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "5518fccf9b5e5f5d4ccd8db451d3dc94",
+    "content-hash": "470b4feeeee9771bebcbdab52150feae",
     "packages": [
         {
-            "name": "bogosoft/http",
-            "version": "1.1.1",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/bogosoft-php/http.git",
-                "reference": "ddfaa601ca8d341f4e4a3b5820823044c422b3f9"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/bogosoft-php/http/zipball/ddfaa601ca8d341f4e4a3b5820823044c422b3f9",
-                "reference": "ddfaa601ca8d341f4e4a3b5820823044c422b3f9",
-                "shasum": ""
-            },
-            "require": {
-                "php": ">=7.4",
-                "psr/http-message": "^1.0",
-                "psr/http-server-handler": "^1.0",
-                "psr/http-server-middleware": "^1.0"
-            },
-            "require-dev": {
-                "phpunit/phpunit": "^9.2"
-            },
-            "type": "library",
-            "autoload": {
-                "psr-4": {
-                    "Bogosoft\\Http\\": "src/"
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "description": "Implementations for various PSR-7 and PSR-15 contracts.",
-            "time": "2020-06-17T16:16:43+00:00"
-        },
-        {
             "name": "bogosoft/http-routing",
-            "version": "2.3.0",
+            "version": "3.0.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/bogosoft-php/http-routing.git",
-                "reference": "07ed2cdedaf52be7d2e5e290ab96f8af2a76b98e"
+                "reference": "f22e5a18f00d1ed884d7ffcec565d374c11860b0"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/bogosoft-php/http-routing/zipball/07ed2cdedaf52be7d2e5e290ab96f8af2a76b98e",
-                "reference": "07ed2cdedaf52be7d2e5e290ab96f8af2a76b98e",
+                "url": "https://api.github.com/repos/bogosoft-php/http-routing/zipball/f22e5a18f00d1ed884d7ffcec565d374c11860b0",
+                "reference": "f22e5a18f00d1ed884d7ffcec565d374c11860b0",
                 "shasum": ""
             },
             "require": {
-                "bogosoft/http": "^1.1",
                 "ext-json": "*",
                 "php": ">=7.4",
                 "psr/http-factory": "^1.0",
@@ -74,7 +40,7 @@
             },
             "notification-url": "https://packagist.org/downloads/",
             "description": "Contracts and minimal implementations to support HTTP request routing.",
-            "time": "2020-06-28T17:06:29+00:00"
+            "time": "2020-07-05T22:30:01+00:00"
         },
         {
             "name": "psr/http-factory",
@@ -415,16 +381,16 @@
         },
         {
             "name": "myclabs/deep-copy",
-            "version": "1.10.0",
+            "version": "1.10.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/myclabs/DeepCopy.git",
-                "reference": "5796d127b0c4ff505b77455148ea9d5269d99758"
+                "reference": "969b211f9a51aa1f6c01d1d2aef56d3bd91598e5"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/myclabs/DeepCopy/zipball/5796d127b0c4ff505b77455148ea9d5269d99758",
-                "reference": "5796d127b0c4ff505b77455148ea9d5269d99758",
+                "url": "https://api.github.com/repos/myclabs/DeepCopy/zipball/969b211f9a51aa1f6c01d1d2aef56d3bd91598e5",
+                "reference": "969b211f9a51aa1f6c01d1d2aef56d3bd91598e5",
                 "shasum": ""
             },
             "require": {
@@ -459,7 +425,7 @@
                 "object",
                 "object graph"
             ],
-            "time": "2020-06-28T07:02:41+00:00"
+            "time": "2020-06-29T13:22:24+00:00"
         },
         {
             "name": "nikic/fast-route",
@@ -1418,20 +1384,20 @@
         },
         {
             "name": "sebastian/diff",
-            "version": "4.0.1",
+            "version": "4.0.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/sebastianbergmann/diff.git",
-                "reference": "3e523c576f29dacecff309f35e4cc5a5c168e78a"
+                "reference": "1e90b4cf905a7d06c420b1d2e9d11a4dc8a13113"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/sebastianbergmann/diff/zipball/3e523c576f29dacecff309f35e4cc5a5c168e78a",
-                "reference": "3e523c576f29dacecff309f35e4cc5a5c168e78a",
+                "url": "https://api.github.com/repos/sebastianbergmann/diff/zipball/1e90b4cf905a7d06c420b1d2e9d11a4dc8a13113",
+                "reference": "1e90b4cf905a7d06c420b1d2e9d11a4dc8a13113",
                 "shasum": ""
             },
             "require": {
-                "php": "^7.3"
+                "php": "^7.3 || ^8.0"
             },
             "require-dev": {
                 "phpunit/phpunit": "^9.0",
@@ -1470,7 +1436,7 @@
                 "unidiff",
                 "unified diff"
             ],
-            "time": "2020-05-08T05:01:12+00:00"
+            "time": "2020-06-30T04:46:02+00:00"
         },
         {
             "name": "sebastian/environment",
@@ -1838,16 +1804,16 @@
         },
         {
             "name": "sebastian/type",
-            "version": "2.1.1",
+            "version": "2.2.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/sebastianbergmann/type.git",
-                "reference": "56b3ba194e0cbaaf3de7ccd353c289d7a84ed022"
+                "reference": "86991e2b33446cd96e648c18bcdb1e95afb2c05a"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/sebastianbergmann/type/zipball/56b3ba194e0cbaaf3de7ccd353c289d7a84ed022",
-                "reference": "56b3ba194e0cbaaf3de7ccd353c289d7a84ed022",
+                "url": "https://api.github.com/repos/sebastianbergmann/type/zipball/86991e2b33446cd96e648c18bcdb1e95afb2c05a",
+                "reference": "86991e2b33446cd96e648c18bcdb1e95afb2c05a",
                 "shasum": ""
             },
             "require": {
@@ -1859,7 +1825,7 @@
             "type": "library",
             "extra": {
                 "branch-alias": {
-                    "dev-master": "2.1-dev"
+                    "dev-master": "2.2-dev"
                 }
             },
             "autoload": {
@@ -1880,7 +1846,7 @@
             ],
             "description": "Collection of value objects that represent the types of the PHP type system",
             "homepage": "https://github.com/sebastianbergmann/type",
-            "time": "2020-06-26T12:17:54+00:00"
+            "time": "2020-07-05T08:31:53+00:00"
         },
         {
             "name": "sebastian/version",

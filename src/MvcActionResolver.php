@@ -10,7 +10,6 @@ use Bogosoft\Http\Routing\FilteredAction;
 use Bogosoft\Http\Routing\IAction;
 use Bogosoft\Http\Routing\IActionResolver;
 use Psr\Http\Message\ServerRequestInterface as IServerRequest;
-use ReflectionException;
 use RuntimeException;
 
 /**
@@ -115,11 +114,9 @@ class MvcActionResolver implements IActionResolver
 
         if (count($context->filterDefinitions) > 0)
         {
-            $action = new FilteredAction($action);
-
             $filters = $this->getActionFilters($context->filterDefinitions);
 
-            $action->appendFilters($filters);
+            $action = new FilteredAction($action, $filters);
         }
 
         return $action;
