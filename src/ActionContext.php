@@ -12,6 +12,17 @@ namespace Bogosoft\Http\Mvc;
  */
 class ActionContext
 {
+    static function __set_state($data)
+    {
+        $context = new ActionContext();
+
+        $context->controllerClass   = $data['controllerClass'];
+        $context->filterDefinitions = $data['filterDefinitions'];
+        $context->methodName        = $data['methodName'];
+
+        return $context;
+    }
+
     /**
      * @var string Get or set the name of a controller class.
      */
