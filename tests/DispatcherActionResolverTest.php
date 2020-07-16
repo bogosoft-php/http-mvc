@@ -4,15 +4,15 @@ declare(strict_types=1);
 
 namespace Tests;
 
-use Bogosoft\Http\Mvc\ActionContext;
+use Bogosoft\Http\Mvc\ControllerActionContext;
 use Bogosoft\Http\Mvc\Controller;
 use Bogosoft\Http\Mvc\ControllerAction;
+use Bogosoft\Http\Mvc\ControllerActionContextResolver;
 use Bogosoft\Http\Mvc\DelegatedControllerFactory;
 use Bogosoft\Http\Mvc\DelegatedViewFactory;
+use Bogosoft\Http\Mvc\DispatcherActionResolver;
 use Bogosoft\Http\Mvc\IDispatcher;
 use Bogosoft\Http\Mvc\IView;
-use Bogosoft\Http\Mvc\MvcActionResolver;
-use Bogosoft\Http\Mvc\MvcActionResolverParameters as Parameters;
 use Bogosoft\Http\Mvc\RouteInfo;
 use Bogosoft\Http\Routing\Actions\MethodNotAllowedAction;
 use Bogosoft\Http\Routing\FilteredAction;
@@ -21,24 +21,22 @@ use PHPUnit\Framework\TestCase;
 use Psr\Http\Message\ServerRequestInterface as IServerRequest;
 use RuntimeException;
 
-class MvcActionResolverTest extends TestCase
+class DispatcherActionResolverTest extends TestCase
 {
     function testReturnsControllerActionWhenDispatcherFindsNonFilteredActionContext(): void
     {
-        $params = new Parameters();
-
         $getController = function (string $class): ?Controller
         {
             return new class extends Controller {};
         };
 
-        $params->controllers = new DelegatedControllerFactory($getController);
+        $controllers = new DelegatedControllerFactory($getController);
 
-        $params->dispatcher = new class implements IDispatcher
+        $dispatcher = new class implements IDispatcher
         {
             function dispatch(IServerRequest $request): RouteInfo
             {
-                $context = new ActionContext();
+                $context = new ControllerActionContext();
 
                 $context->controllerClass = 'HomeController';
                 $context->methodName      = 'index';
@@ -52,9 +50,13 @@ class MvcActionResolverTest extends TestCase
             return null;
         };
 
-        $params->views = new DelegatedViewFactory($getView);
+        $views = new DelegatedViewFactory($getView);
 
-        $resolver = new MvcActionResolver($params);
+        $resolvers = [
+            new ControllerActionContextResolver($controllers, $views)
+        ];
+
+        $resolver = new DispatcherActionResolver($dispatcher, $resolvers);
 
         $request = new ServerRequest('GET', '/');
 
@@ -65,20 +67,18 @@ class MvcActionResolverTest extends TestCase
 
     function testReturnsFilteredActionWhenDispatcherFindFilteredActionContext(): void
     {
-        $params = new Parameters();
-
         $getController = function (string $class): ?Controller
         {
             return new class extends Controller {};
         };
 
-        $params->controllers = new DelegatedControllerFactory($getController);
+        $controllers = new DelegatedControllerFactory($getController);
 
-        $params->dispatcher = new class implements IDispatcher
+        $dispatcher = new class implements IDispatcher
         {
             function dispatch(IServerRequest $request): RouteInfo
             {
-                $context = new ActionContext();
+                $context = new ControllerActionContext();
 
                 $context->controllerClass = 'HomeController';
                 $context->filterDefinitions   = ['RequiresClaim'];
@@ -93,9 +93,13 @@ class MvcActionResolverTest extends TestCase
             return null;
         };
 
-        $params->views = new DelegatedViewFactory($getView);
+        $views = new DelegatedViewFactory($getView);
 
-        $resolver = new MvcActionResolver($params);
+        $resolvers = [
+            new ControllerActionContextResolver($controllers, $views)
+        ];
+
+        $resolver = new DispatcherActionResolver($dispatcher, $resolvers);
 
         $request = new ServerRequest('GET', '/');
 
@@ -106,9 +110,7 @@ class MvcActionResolverTest extends TestCase
 
     function testReturnsMethodNotAllowedWhenDispatcherIndicatesDisallowedMethod(): void
     {
-        $params = new Parameters();
-
-        $params->dispatcher = new class implements IDispatcher
+        $dispatcher = new class implements IDispatcher
         {
             function dispatch(IServerRequest $request): RouteInfo
             {
@@ -116,7 +118,7 @@ class MvcActionResolverTest extends TestCase
             }
         };
 
-        $resolver = new MvcActionResolver($params);
+        $resolver = new DispatcherActionResolver($dispatcher, []);
 
         $request = new ServerRequest('GET', '/');
 
@@ -127,9 +129,7 @@ class MvcActionResolverTest extends TestCase
 
     function testReturnsNullWhenDispatcherIndicatesNotFound(): void
     {
-        $params = new Parameters();
-
-        $params->dispatcher = new class implements IDispatcher
+        $dispatcher = new class implements IDispatcher
         {
             function dispatch(IServerRequest $request): RouteInfo
             {
@@ -137,7 +137,7 @@ class MvcActionResolverTest extends TestCase
             }
         };
 
-        $resolver = new MvcActionResolver($params);
+        $resolver = new DispatcherActionResolver($dispatcher, []);
 
         $request = new ServerRequest('GET', '/');
 
@@ -148,9 +148,7 @@ class MvcActionResolverTest extends TestCase
 
     function testThrowsRuntimeExceptionWhenDispatcherIndicatesFoundAndContextIsNull(): void
     {
-        $params = new Parameters();
-
-        $params->dispatcher = new class implements IDispatcher
+        $dispatcher = new class implements IDispatcher
         {
             function dispatch(IServerRequest $request): RouteInfo
             {
@@ -158,7 +156,7 @@ class MvcActionResolverTest extends TestCase
             }
         };
 
-        $resolver = new MvcActionResolver($params);
+        $resolver = new DispatcherActionResolver($dispatcher, []);
 
         $request = new ServerRequest('GET', '/');
 

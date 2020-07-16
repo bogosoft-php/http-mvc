@@ -53,6 +53,9 @@ class ControllerAction implements IAction
     {
         $controller = $this->controllers->createController($this->class);
 
+        if (null === $controller)
+            return new NotFoundResult();
+
         $rc = new ReflectionClass($controller);
 
         /** @var ReflectionMethod $rm */

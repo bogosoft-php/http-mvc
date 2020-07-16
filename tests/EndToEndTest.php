@@ -4,15 +4,15 @@ declare(strict_types=1);
 
 namespace Tests;
 
-use Bogosoft\Http\Mvc\ActionContext;
+use Bogosoft\Http\Mvc\ControllerActionContext;
 use Bogosoft\Http\Mvc\ActionFilterDefinition;
 use Bogosoft\Http\Mvc\Controller;
+use Bogosoft\Http\Mvc\ControllerActionContextResolver;
 use Bogosoft\Http\Mvc\DefaultActionFilterFactory;
+use Bogosoft\Http\Mvc\DispatcherActionResolver;
 use Bogosoft\Http\Mvc\IControllerFactory;
 use Bogosoft\Http\Mvc\IView;
 use Bogosoft\Http\Mvc\IViewFactory;
-use Bogosoft\Http\Mvc\MvcActionResolver;
-use Bogosoft\Http\Mvc\MvcActionResolverParameters as Parameters;
 use Bogosoft\Http\Routing\IActionResult;
 use FastRoute\RouteCollector;
 use GuzzleHttp\Psr7\Response;
@@ -25,7 +25,7 @@ class EndToEndTest extends TestCase
     {
         $dispatcher = new FastRouteDispatcher(function(RouteCollector $rc): void
         {
-            $context1 = new ActionContext();
+            $context1 = new ControllerActionContext();
 
             $context1->controllerClass   = ProductsController::class;
             $context1->methodName        = 'index';
@@ -36,7 +36,7 @@ class EndToEndTest extends TestCase
 
             $filter->class = HasUserInfoFilter::class;
 
-            $context2 = new ActionContext();
+            $context2 = new ControllerActionContext();
 
             $context2->controllerClass   = ProductsController::class;
             $context2->methodName        = 'add';
@@ -73,14 +73,11 @@ class EndToEndTest extends TestCase
             }
         };
 
-        $params = new Parameters();
+        $resolvers = [
+            new ControllerActionContextResolver($controllers, $views)
+        ];
 
-        $params->controllers = $controllers;
-        $params->dispatcher  = $dispatcher;
-        $params->filters     = new DefaultActionFilterFactory();
-        $params->views       = $views;
-
-        $resolver = new MvcActionResolver($params);
+        $resolver = new DispatcherActionResolver($dispatcher, $resolvers);
 
         #
         # Ensure not found functionality works.
