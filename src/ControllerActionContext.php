@@ -19,7 +19,6 @@ class ControllerActionContext extends ActionContext
         $context->controllerClass   = $data['controllerClass'];
         $context->filterDefinitions = $data['filterDefinitions'];
         $context->methodName        = $data['methodName'];
-        $context->parameters        = $data['parameters'];
 
         return $context;
     }
@@ -33,10 +32,4 @@ class ControllerActionContext extends ActionContext
      * @var string Get or set the name of a method on a controller.
      */
     public string $methodName;
-
-    /**
-     * @var array Get or set an array of parameters derived from an associated
-     *            HTTP request.
-     */
-    public array $parameters = [];
 }
