@@ -2,6 +2,8 @@
 
 namespace Bogosoft\Http\Mvc;
 
+use Psr\Http\Message\ServerRequestInterface as IServerRequest;
+
 /**
  * Represents a strategy for creating a controller.
  *
@@ -12,12 +14,14 @@ interface IControllerFactory
     /**
      * Create a new controller.
      *
-     * @param  string          $class The class name of a controller to be
-     *                                created.
-     * @return Controller|null        A new controller. Implementations SHOULD
-     *                                return {@see null} in the event that a
-     *                                controller with the given class name
-     *                                cannot be found.
+     * @param  string          $class   The class name of a controller to be
+     *                                  created.
+     * @param  IServerRequest  $request The HTTP request associated with the
+     *                                  controller construction event.
+     * @return Controller|null          A new controller. Implementations
+     *                                  SHOULD return {@see null} in the event
+     *                                  that a controller with the given class
+     *                                  name cannot be found.
      */
-    function createController(string $class): ?Controller;
+    function createController(string $class, IServerRequest $request): ?Controller;
 }

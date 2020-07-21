@@ -8,9 +8,13 @@ use Bogosoft\Http\Mvc\Controller;
 use Bogosoft\Http\Mvc\ControllerAction;
 use Bogosoft\Http\Mvc\DelegatedControllerFactory;
 use Bogosoft\Http\Mvc\IControllerFactory;
+use Bogosoft\Http\Mvc\NamedParameterQueryMatcher;
+use Bogosoft\Http\Mvc\NamedPropertyQueryMatcher;
+use Bogosoft\Http\Mvc\ValueObjectParameterMatcher;
 use GuzzleHttp\Psr7\Response;
 use GuzzleHttp\Psr7\ServerRequest;
 use PHPUnit\Framework\TestCase;
+use Psr\Http\Message\ServerRequestInterface as IServerRequest;
 
 class ControllerActionTest extends TestCase
 {
@@ -18,7 +22,7 @@ class ControllerActionTest extends TestCase
     {
         $factory = new class implements IControllerFactory
         {
-            function createController(string $class): ?Controller
+            function createController(string $class, IServerRequest $request): ?Controller
             {
                 return new class extends Controller
                 {
@@ -30,9 +34,15 @@ class ControllerActionTest extends TestCase
             }
         };
 
-        $action = new ControllerAction($factory, '', 'create', ['username' => 'Alice']);
+        $matcher = new NamedParameterQueryMatcher();
 
-        $result = $action->execute(new ServerRequest('POST', '/'));
+        $action = new ControllerAction($factory, '', 'create', $matcher);
+
+        $request = new ServerRequest('POST', '/');
+
+        $request = $request->withQueryParams(['username' => 'Alice']);
+
+        $result = $action->execute($request);
 
         $response = new Response(200);
 
@@ -50,7 +60,9 @@ class ControllerActionTest extends TestCase
 
         $factory = new DelegatedControllerFactory($create);
 
-        $action = new ControllerAction($factory, '', 'nothing', []);
+        $matcher = new NamedParameterQueryMatcher();
+
+        $action = new ControllerAction($factory, '', 'nothing', $matcher);
 
         $result = $action->execute(new ServerRequest('GET', '/'));
 
@@ -80,14 +92,20 @@ class ControllerActionTest extends TestCase
 
         $factory = new DelegatedControllerFactory($create);
 
-        $parameters = [
+        $matcher = new ValueObjectParameterMatcher(
+            new NamedPropertyQueryMatcher()
+        );
+
+        $action = new ControllerAction($factory, '', 'add', $matcher);
+
+        $request = new ServerRequest('GET', '/');
+
+        $request = $request->withQueryParams([
             'operand1' => $operand1,
             'operand2' => $operand2
-        ];
+        ]);
 
-        $action = new ControllerAction($factory, '', 'add', $parameters);
-
-        $actual = $action->execute(new ServerRequest('GET', '/'));
+        $actual = $action->execute($request);
 
         $this->assertEquals($expected, $actual);
     }
@@ -108,7 +126,7 @@ class ControllerActionTest extends TestCase
                 $this->format = $format;
             }
 
-            function createController(string $class): ?Controller
+            function createController(string $class, IServerRequest $request): ?Controller
             {
                 return $this;
             }
@@ -119,14 +137,18 @@ class ControllerActionTest extends TestCase
             }
         };
 
-        $parameters = [
+        $request = new ServerRequest('GET', '/');
+
+        $request = $request->withQueryParams([
             'subject' => $subject,
             'time'    => $time
-        ];
+        ]);
 
-        $action = new ControllerAction($controller, '', 'index', $parameters);
+        $matcher = new NamedParameterQueryMatcher();
 
-        $actual = $action->execute(new ServerRequest('GET', '/'));
+        $action = new ControllerAction($controller, '', 'index', $matcher);
+
+        $actual = $action->execute($request);
 
         $this->assertEquals($expected, $actual);
     }
@@ -154,15 +176,21 @@ class ControllerActionTest extends TestCase
             /**
              * @inheritDoc
              */
-            function createController(string $class): ?Controller
+            function createController(string $class, IServerRequest $request): ?Controller
             {
                 return $this;
             }
         };
 
-        $action = new ControllerAction($controller, '', 'index', ['name' => 'Bob']);
+        $request = new ServerRequest('GET', '/');
 
-        $actual = $action->execute(new ServerRequest('GET', '/'));
+        $request = $request->withQueryParams(['name' => 'Bob']);
+
+        $matcher = new NamedParameterQueryMatcher();
+
+        $action = new ControllerAction($controller, '', 'index', $matcher);
+
+        $actual = $action->execute($request);
 
         $this->assertEquals($expected, $actual);
     }
@@ -188,13 +216,15 @@ class ControllerActionTest extends TestCase
             /**
              * @inheritDoc
              */
-            function createController(string $class): ?Controller
+            function createController(string $class, IServerRequest $request): ?Controller
             {
                 return $this;
             }
         };
 
-        $action = new ControllerAction($controller, '', 'index', []);
+        $matcher = new NamedParameterQueryMatcher();
+
+        $action = new ControllerAction($controller, '', 'index', $matcher);
 
         $actual = $action->execute(new ServerRequest('GET', '/'));
 

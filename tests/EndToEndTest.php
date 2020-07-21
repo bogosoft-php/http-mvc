@@ -4,47 +4,34 @@ declare(strict_types=1);
 
 namespace Tests;
 
+use Bogosoft\Http\Mvc\ActionContext;
+use Bogosoft\Http\Mvc\CompositeActionContextActivator;
+use Bogosoft\Http\Mvc\CompositeParameterMatcher;
 use Bogosoft\Http\Mvc\ControllerActionContext;
 use Bogosoft\Http\Mvc\ActionFilterDefinition;
 use Bogosoft\Http\Mvc\Controller;
-use Bogosoft\Http\Mvc\ControllerActionContextResolver;
+use Bogosoft\Http\Mvc\ControllerActionContextActivator;
+use Bogosoft\Http\Mvc\DefaultActionContextActivator;
 use Bogosoft\Http\Mvc\DefaultActionFilterFactory;
-use Bogosoft\Http\Mvc\DispatcherActionResolver;
+use Bogosoft\Http\Mvc\IActionContextActivator;
+use Bogosoft\Http\Mvc\IActionFilterFactory;
 use Bogosoft\Http\Mvc\IControllerFactory;
 use Bogosoft\Http\Mvc\IView;
 use Bogosoft\Http\Mvc\IViewFactory;
+use Bogosoft\Http\Mvc\MethodNotAllowedActionContext;
+use Bogosoft\Http\Mvc\MvcActionResolver;
+use Bogosoft\Http\Mvc\NamedPropertyQueryMatcher;
+use Bogosoft\Http\Mvc\ValueObjectParameterMatcher;
 use Bogosoft\Http\Routing\IActionResult;
-use FastRoute\RouteCollector;
 use GuzzleHttp\Psr7\Response;
 use GuzzleHttp\Psr7\ServerRequest;
 use PHPUnit\Framework\TestCase;
+use Psr\Http\Message\ServerRequestInterface as IServerRequest;
 
 class EndToEndTest extends TestCase
 {
     function testA(): void
     {
-        $dispatcher = new FastRouteDispatcher(function(RouteCollector $rc): void
-        {
-            $context1 = new ControllerActionContext();
-
-            $context1->controllerClass   = ProductsController::class;
-            $context1->methodName        = 'index';
-
-            $rc->addRoute('GET', '/products', $context1);
-
-            $filter = new ActionFilterDefinition();
-
-            $filter->class = HasUserInfoFilter::class;
-
-            $context2 = new ControllerActionContext();
-
-            $context2->controllerClass   = ProductsController::class;
-            $context2->methodName        = 'add';
-            $context2->filterDefinitions = [$filter];
-
-            $rc->addRoute('POST', '/products/add', $context2);
-        });
-
         $repo = new MemoryProductRepository();
 
         $controllers = new class($repo) implements IControllerFactory
@@ -56,7 +43,7 @@ class EndToEndTest extends TestCase
                 $this->repo = $repo;
             }
 
-            function createController(string $class): ?Controller
+            function createController(string $class, IServerRequest $request): ?Controller
             {
                 if (ProductsController::class === $class)
                     return new ProductsController($this->repo);
@@ -73,11 +60,64 @@ class EndToEndTest extends TestCase
             }
         };
 
-        $resolvers = [
-            new ControllerActionContextResolver($controllers, $views)
-        ];
+        $matcher = new ValueObjectParameterMatcher(
+            new NamedPropertyQueryMatcher()
+        );
 
-        $resolver = new DispatcherActionResolver($dispatcher, $resolvers);
+        $activator = new DefaultActionContextActivator($controllers, $matcher, $views);
+
+        $resolver = new class($activator) extends MvcActionResolver
+        {
+            function __construct(IActionContextActivator $activator)
+            {
+                $filters = new DefaultActionFilterFactory();
+
+                parent::__construct($activator, $filters);
+            }
+
+            /**
+             * @inheritDoc
+             */
+            protected function getActionContext(IServerRequest $request): ?ActionContext
+            {
+                $method = strtolower($request->getMethod());
+                $path   = strtolower($request->getUri()->getPath());
+
+                if ('/products' === $path)
+                {
+                    if ('get' !== $method)
+                        return new MethodNotAllowedActionContext(['GET']);
+
+                    $context = new ControllerActionContext();
+
+                    $context->controllerClass = ProductsController::class;
+                    $context->methodName      = 'index';
+
+                    return $context;
+                }
+                elseif ('/products/add' === $path)
+                {
+                    if ('post' !== $method)
+                        return new MethodNotAllowedActionContext(['POST']);
+
+                    $filter = new ActionFilterDefinition();
+
+                    $filter->class = HasUserInfoFilter::class;
+
+                    $context = new ControllerActionContext();
+
+                    $context->controllerClass   = ProductsController::class;
+                    $context->filterDefinitions = [$filter];
+                    $context->methodName        = 'add';
+
+                    return $context;
+                }
+                else
+                {
+                    return null;
+                }
+            }
+        };
 
         #
         # Ensure not found functionality works.

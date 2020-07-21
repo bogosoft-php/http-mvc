@@ -16,11 +16,5 @@ abstract class ActionContext
      * @var ActionFilterDefinition[] Get or set an array of action filter
      *                               definitions.
      */
-    public array $filterDefinitions;
-
-    /**
-     * @var array Get or set an array of parameters derived from an associated
-     *            HTTP request.
-     */
-    public array $parameters;
+    public array $filterDefinitions = [];
 }

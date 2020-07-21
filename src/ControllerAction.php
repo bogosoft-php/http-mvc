@@ -20,30 +20,29 @@ class ControllerAction implements IAction
     private string $class;
     private IControllerFactory $controllers;
     private string $method;
-    private array $parameters;
+    private IParameterMatcher $matcher;
 
     /**
      * Create a new controller action.
      *
      * @param IControllerFactory $controllers A factory from which controllers
      *                                        can be created.
-     * @param string     $class               The name of a controller class.
-     * @param string     $method              The name of a method to be
+     * @param string             $class       The name of a controller class.
+     * @param string             $method      The name of a method to be
      *                                        invoked on a controller.
-     * @param array      $parameters          A collection of parameters as an
-     *                                        array of key-value pairs.
+     * @param IParameterMatcher  $matcher     A parameter matching strategy.
      */
     function __construct(
         IControllerFactory $controllers,
         string $class,
         string $method,
-        array $parameters
+        IParameterMatcher $matcher
         )
     {
         $this->class       = $class;
         $this->controllers = $controllers;
+        $this->matcher     = $matcher;
         $this->method      = $method;
-        $this->parameters  = $parameters;
     }
 
     /**
@@ -51,7 +50,7 @@ class ControllerAction implements IAction
      */
     function execute(IServerRequest $request)
     {
-        $controller = $this->controllers->createController($this->class);
+        $controller = $this->controllers->createController($this->class, $request);
 
         if (null === $controller)
             return new NotFoundResult();
@@ -72,29 +71,15 @@ class ControllerAction implements IAction
 
         $args = [];
 
-        $params = array_merge($request->getQueryParams(), $this->parameters);
+        $params = $rm->getParameters();
 
-        foreach ($rm->getParameters() as $rp)
-            if (array_key_exists($name = $rp->getName(), $params))
-                $args[] = $params[$name];
-            elseif (null !== ($rc = $rp->getClass()))
-                $args[] = $this->resolveObject($rc, $params);
-            elseif ($rp->isDefaultValueAvailable())
-                $args[] = $rp->getDefaultValue();
-            else
-                return new BadRequestResult();
+        foreach ($params as $rp)
+            if ($this->matcher->tryMatch($rp, $request, $result))
+                $args[] = $result;
+
+        if (count($args) < count($params))
+            return new BadRequestResult();
 
         return $rm->invokeArgs($controller, $args);
-    }
-
-    private function resolveObject(ReflectionClass $rc, array &$parameters)
-    {
-        $argument = $rc->newInstance();
-
-        foreach ($rc->getProperties() as $rp)
-            if (array_key_exists($name = $rp->getName(), $parameters))
-                $rp->setValue($argument, $parameters[$name]);
-
-        return $argument;
     }
 }

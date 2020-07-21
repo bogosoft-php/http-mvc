@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace Bogosoft\Http\Mvc;
 
 use Bogosoft\Http\Routing\DelegatedAction;
+use Psr\Http\Message\ServerRequestInterface as IServerRequest;
 
 /**
  * An implementation of the {@see IControllerFactory} that delegates
@@ -12,7 +13,7 @@ use Bogosoft\Http\Routing\DelegatedAction;
  *
  * The delegate is expected to be of the form:
  *
- * - fn({@see string}): {@see Controller}|{@see null}
+ * - fn({@see string}, {@see IServerRequest}): {@see Controller}|{@see null}
  *
  * This class cannot be inherited.
  *
@@ -37,8 +38,8 @@ final class DelegatedControllerFactory implements IControllerFactory
     /**
      * @inheritDoc
      */
-    function createController(string $class): ?Controller
+    function createController(string $class, IServerRequest $request): ?Controller
     {
-        return ($this->delegate)($class);
+        return ($this->delegate)($class, $request);
     }
 }

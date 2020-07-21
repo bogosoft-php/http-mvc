@@ -11,7 +11,7 @@ use Psr\Http\Message\ServerRequestInterface as IServerRequest;
  *
  * @package Bogosoft\Http\Mvc
  */
-interface IActionContextResolver
+interface IActionContextActivator
 {
     /**
      * Attempt to resolve an action from a given action context and HTTP
@@ -21,10 +21,10 @@ interface IActionContextResolver
      * @param  IServerRequest $request An HTTP request.
      * @return IAction|null            The result of attempting to resolve an
      *                                 action from the given action context
-     *                                 HTTP request. Implementors SHOULD
+     *                                 HTTP request. Implementations SHOULD
      *                                 return {@see null} if the current
-     *                                 resolver cannot resolve an action from
-     *                                 the given arguments.
+     *                                 activator cannot activate the given
+     *                                 action context.
      */
-    function resolveContext(ActionContext $context, IServerRequest $request): ?IAction;
+    function activateContext(ActionContext $context, IServerRequest $request): ?IAction;
 }

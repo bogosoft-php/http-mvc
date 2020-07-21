@@ -53,6 +53,15 @@ abstract class Controller
     }
 
     /**
+     * @return bool Get a value indicating whether or not the current
+     *              controller is locked against member mutation.
+     */
+    function isLocked(): bool
+    {
+        return $this->locked;
+    }
+
+    /**
      * Lock the current controller against modification of certain members.
      */
     function lock(): void
