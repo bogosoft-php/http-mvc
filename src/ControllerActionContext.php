@@ -19,6 +19,7 @@ class ControllerActionContext extends ActionContext
         $context->controllerClass   = $data['controllerClass'];
         $context->filterDefinitions = $data['filterDefinitions'];
         $context->methodName        = $data['methodName'];
+        $context->parameters        = $data['parameters'];
 
         return $context;
     }

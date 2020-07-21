@@ -17,6 +17,7 @@ class ViewActionContext extends ActionContext
         $context = new ViewActionContext();
 
         $context->filterDefinitions = $data['filterDefinitions'];
+        $context->parameters        = $data['parameters'];
         $context->viewName          = $data['viewName'];
 
         return $context;

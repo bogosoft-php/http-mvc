@@ -17,4 +17,10 @@ abstract class ActionContext
      *                               definitions.
      */
     public array $filterDefinitions = [];
+
+    /**
+     * @var string[] Get or set an array of parameters associated with the
+     *               current action context.
+     */
+    public array $parameters = [];
 }
