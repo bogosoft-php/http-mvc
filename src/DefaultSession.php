@@ -5,7 +5,10 @@ declare(strict_types=1);
 namespace Bogosoft\Http\Mvc;
 
 /**
- * A straight-forward implementation of the {@see ISession} contract.
+ * A default session implementation that uses the session superglobal.
+ *
+ * Note that a call to {@see session_start()} must have been initiated
+ * prior to calling the methods of an object of this class.
  *
  * This class cannot be inherited.
  *
@@ -35,6 +38,14 @@ final class DefaultSession implements ISession
         return array_key_exists($key, $_SESSION)
             ? $_SESSION[$key]
             : $default;
+    }
+
+    /**
+     * @inheritDoc
+     */
+    function has(string $key): bool
+    {
+        return array_key_exists($key, $_SESSION);
     }
 
     /**

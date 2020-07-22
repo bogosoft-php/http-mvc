@@ -23,6 +23,16 @@ interface ISession
     function get(string $key, $default = null);
 
     /**
+     * Get a value indicating whether or not the current session has a value
+     * registered to a given key.
+     *
+     * @param  string $key A session value key.
+     * @return bool        True if the current session has a value registered
+     *                     to the given key; false otherwise.
+     */
+    function has(string $key): bool;
+
+    /**
      * Regenerate the current session.
      */
     function regenerate(): void;
