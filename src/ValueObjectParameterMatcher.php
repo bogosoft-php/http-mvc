@@ -45,8 +45,6 @@ class ValueObjectParameterMatcher implements IParameterMatcher
         foreach ($rc->getProperties($flags) as $property)
             if ($this->propertyMatcher->tryMatch($property, $request, $value))
                 $property->setValue($result, $value);
-            else
-                return false;
 
         return true;
     }
