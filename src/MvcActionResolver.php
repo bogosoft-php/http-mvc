@@ -58,6 +58,21 @@ abstract class MvcActionResolver implements IActionResolver
     {
         foreach ($context->filterDefinitions as $definition)
             yield $this->filters->createActionFilter($definition);
+
+        yield from $this->getGlobalActionFilters();
+    }
+
+    /**
+     * When overridden in a derived class, gets additional, global action
+     * filters that will be applied after context-specific action filters.
+     *
+     * By default, this method returns nothing.
+     *
+     * @return iterable
+     */
+    protected function getGlobalActionFilters(): iterable
+    {
+        yield from [];
     }
 
     /**
