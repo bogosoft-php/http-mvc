@@ -6,6 +6,8 @@ namespace Bogosoft\Http\Mvc;
 
 use Bogosoft\Http\Routing\Actions\MethodNotAllowedAction;
 use Bogosoft\Http\Routing\IAction;
+use Bogosoft\Http\Session\DefaultSession;
+use Bogosoft\Http\Session\ISession;
 use Psr\Http\Message\ServerRequestInterface as IServerRequest;
 
 /**

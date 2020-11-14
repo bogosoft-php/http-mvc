@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "470b4feeeee9771bebcbdab52150feae",
+    "content-hash": "917115655f45c9e5b5632750ddf6ac2e",
     "packages": [
         {
             "name": "bogosoft/http-routing",
@@ -41,6 +41,36 @@
             "notification-url": "https://packagist.org/downloads/",
             "description": "Contracts and minimal implementations to support HTTP request routing.",
             "time": "2020-07-16T16:10:17+00:00"
+        },
+        {
+            "name": "bogosoft/http-session",
+            "version": "1.0.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/bogosoft-php/http-session.git",
+                "reference": "67363c30df9db61eb8c06a2a8b935c80f72288c8"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/bogosoft-php/http-session/zipball/67363c30df9db61eb8c06a2a8b935c80f72288c8",
+                "reference": "67363c30df9db61eb8c06a2a8b935c80f72288c8",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=7.4"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Bogosoft\\Http\\Session\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "description": "A library of HTTP session contracts and default implementations.",
+            "time": "2020-11-14T11:04:54+00:00"
         },
         {
             "name": "psr/http-factory",
@@ -2051,5 +2081,6 @@
     "platform": {
         "php": ">=7.4"
     },
-    "platform-dev": []
+    "platform-dev": [],
+    "plugin-api-version": "1.1.0"
 }

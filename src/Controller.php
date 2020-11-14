@@ -7,6 +7,7 @@ namespace Bogosoft\Http\Mvc;
 use Bogosoft\Http\Routing\IActionResult;
 use Bogosoft\Http\Routing\Results\BadRequestResult;
 use Bogosoft\Http\Routing\Results\NotFoundResult;
+use Bogosoft\Http\Session\ISession;
 use Psr\Http\Message\ServerRequestInterface as IServerRequest;
 use RuntimeException;
 
