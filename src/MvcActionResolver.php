@@ -41,6 +41,20 @@ abstract class MvcActionResolver implements IActionResolver
     }
 
     /**
+     * When overridden in a derived class, applies a sequence of global
+     * action filters AFTER any context-specific action filters.
+     *
+     * By default, this method returns an empty sequence.
+     *
+     * @return iterable A sequence of {@see ActionFilterDefinition} objects.
+     */
+    protected function appendGlobalActionFilters(): iterable
+    {
+        /** @noinspection PhpDeprecationInspection */
+        return $this->getGlobalActionFilters();
+    }
+
+    /**
      * When overridden in a derived class, generates an action context against
      * a given HTTP request.
      *
@@ -61,10 +75,12 @@ abstract class MvcActionResolver implements IActionResolver
      */
     private function getActionFilters(ActionContext $context): iterable
     {
+        yield from $this->prependGlobalActionFilters();
+
         foreach ($context->filterDefinitions as $definition)
             yield $this->filters->createActionFilter($definition);
 
-        yield from $this->getGlobalActionFilters();
+        yield from $this->appendGlobalActionFilters();
     }
 
     /**
@@ -74,8 +90,24 @@ abstract class MvcActionResolver implements IActionResolver
      * By default, this method returns nothing.
      *
      * @return iterable A sequence of {@see ActionFilterDefinition} objects.
+     *
+     * @deprecated Use {@see MvcActionResolver::appendGlobalActionFilters()}
+     *             instead.
      */
     protected function getGlobalActionFilters(): iterable
+    {
+        yield from [];
+    }
+
+    /**
+     * When overridden in a derived class, applies a sequence of global
+     * action filters BEFORE any context-specific action filters.
+     *
+     * By default, this method returns an empty sequence.
+     *
+     * @return iterable A sequence of {@see ActionFilterDefinition} objects.
+     */
+    protected function prependGlobalActionFilters(): iterable
     {
         yield from [];
     }
