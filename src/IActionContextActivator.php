@@ -21,7 +21,7 @@ interface IActionContextActivator
      * @param  IServerRequest $request An HTTP request.
      * @return IAction|null            The result of attempting to resolve an
      *                                 action from the given action context
-     *                                 HTTP request. Implementations SHOULD
+     *                                 and HTTP request. Implementations SHOULD
      *                                 return {@see null} if the current
      *                                 activator cannot activate the given
      *                                 action context.

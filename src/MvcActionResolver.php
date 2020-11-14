@@ -87,7 +87,7 @@ abstract class MvcActionResolver implements IActionResolver
 
         $action = $this->activator->activateContext($context, $request);
 
-        if (null === ($action))
+        if (null === $action)
             throw new CannotActivateActionContextException($request);
 
         if (count($context->filterDefinitions) > 0)
