@@ -81,6 +81,16 @@ abstract class Controller
     }
 
     /**
+     * Indicate that the requested resource was found.
+     *
+     * @return OkResult
+     */
+    protected function ok(): OkResult
+    {
+        return new OkResult();
+    }
+
+    /**
      * Associate an HTTP request with the current controller.
      *
      * @param IRequest $request An HTTP request.
