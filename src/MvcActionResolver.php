@@ -54,6 +54,11 @@ abstract class MvcActionResolver implements IActionResolver
      */
     protected abstract function getActionContext(IRequest $request): ?ActionContext;
 
+    /**
+     * @param  ActionContext $context An action context.
+     * @return iterable               An {@see ActionFilterDefinition}
+     *                                sequence.
+     */
     private function getActionFilters(ActionContext $context): iterable
     {
         foreach ($context->filterDefinitions as $definition)
@@ -68,7 +73,7 @@ abstract class MvcActionResolver implements IActionResolver
      *
      * By default, this method returns nothing.
      *
-     * @return iterable
+     * @return iterable A sequence of {@see ActionFilterDefinition} objects.
      */
     protected function getGlobalActionFilters(): iterable
     {
