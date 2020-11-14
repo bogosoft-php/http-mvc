@@ -46,7 +46,7 @@ abstract class MvcActionResolver implements IActionResolver
      *
      * By default, this method returns an empty sequence.
      *
-     * @return iterable A sequence of {@see ActionFilterDefinition} objects.
+     * @return iterable A sequence of {@see ActionFilter} objects.
      */
     protected function appendGlobalActionFilters(): iterable
     {
@@ -70,8 +70,8 @@ abstract class MvcActionResolver implements IActionResolver
 
     /**
      * @param  ActionContext $context An action context.
-     * @return iterable               An {@see ActionFilterDefinition}
-     *                                sequence.
+     * @return iterable               A sequence of {@see ActionFilter}
+     *                                objects.
      */
     private function getActionFilters(ActionContext $context): iterable
     {
@@ -89,7 +89,7 @@ abstract class MvcActionResolver implements IActionResolver
      *
      * By default, this method returns nothing.
      *
-     * @return iterable A sequence of {@see ActionFilterDefinition} objects.
+     * @return iterable A sequence of {@see ActionFilter} objects.
      *
      * @deprecated Use {@see MvcActionResolver::appendGlobalActionFilters()}
      *             instead.
@@ -105,7 +105,7 @@ abstract class MvcActionResolver implements IActionResolver
      *
      * By default, this method returns an empty sequence.
      *
-     * @return iterable A sequence of {@see ActionFilterDefinition} objects.
+     * @return iterable A sequence of {@see ActionFilter} objects.
      */
     protected function prependGlobalActionFilters(): iterable
     {
