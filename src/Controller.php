@@ -4,9 +4,9 @@ declare(strict_types=1);
 
 namespace Bogosoft\Http\Mvc;
 
-use Bogosoft\Http\Routing\IActionResult;
 use Bogosoft\Http\Routing\Results\BadRequestResult;
 use Bogosoft\Http\Routing\Results\NotFoundResult;
+use Bogosoft\Http\Routing\Results\OkResult;
 use Bogosoft\Http\Session\ISession;
 use Psr\Http\Message\ServerRequestInterface as IRequest;
 use RuntimeException;
@@ -26,9 +26,9 @@ abstract class Controller
     /**
      * Indicate that a request for a resource was not correctly formed.
      *
-     * @return IActionResult An action result.
+     * @return BadRequestResult An action result.
      */
-    protected function badRequest(): IActionResult
+    protected function badRequest(): BadRequestResult
     {
         return new BadRequestResult();
     }
@@ -73,9 +73,9 @@ abstract class Controller
     /**
      * Indicate that a request for a resource could not be found.
      *
-     * @return IActionResult An action result.
+     * @return NotFoundResult An action result.
      */
-    protected function notFound(): IActionResult
+    protected function notFound(): NotFoundResult
     {
         return new NotFoundResult();
     }
