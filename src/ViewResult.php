@@ -4,9 +4,9 @@ declare(strict_types=1);
 
 namespace Bogosoft\Http\Mvc;
 
-use Bogosoft\Http\DeferredStream;
 use Bogosoft\Http\Routing\IActionResult;
 use Psr\Http\Message\ResponseInterface as IResponse;
+use Psr\Http\Message\StreamFactoryInterface;
 
 /**
  * An implementation of the {@see IActionResult} contract that renders a view
@@ -16,6 +16,7 @@ use Psr\Http\Message\ResponseInterface as IResponse;
  */
 class ViewResult implements IActionResult
 {
+    private StreamFactoryInterface $streams;
     private IView $view;
 
     /**
@@ -34,19 +35,12 @@ class ViewResult implements IActionResult
      */
     function apply(IResponse $response): IResponse
     {
-        return $response->withBody(new class($this->view) extends DeferredStream
-        {
-            private IView $view;
+        $stream = $response->getBody()->detach();
 
-            function __construct(IView $view)
-            {
-                $this->view = $view;
-            }
+        $this->view->render($stream);
 
-            protected function copyToInternal($target)
-            {
-                $this->view->render($target);
-            }
-        });
+        $body = $this->streams->createStreamFromResource($stream);
+
+        return $response->withBody($body);
     }
 }

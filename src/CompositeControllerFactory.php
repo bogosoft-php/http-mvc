@@ -4,6 +4,8 @@ declare(strict_types=1);
 
 namespace Bogosoft\Http\Mvc;
 
+use Psr\Http\Message\ServerRequestInterface as IServerRequest;
+
 /**
  * A composite implementation of the {@see IControllerFactory} that allows
  * multiple controller factories to behave as if they were a single controller
@@ -35,14 +37,14 @@ final class CompositeControllerFactory implements IControllerFactory
     /**
      * @inheritDoc
      */
-    function createController(string $class): ?Controller
+    function createController(string $class, IServerRequest $request): ?Controller
     {
         /** @var Controller $controller */
         $controller = null;
 
         /** @var IControllerFactory $factory */
         foreach ($this->factories as $factory)
-            if (null !== ($controller = $factory->createController($class)))
+            if (null !== ($controller = $factory->createController($class, $request)))
                 break;
 
         return $controller;
