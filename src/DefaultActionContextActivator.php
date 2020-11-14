@@ -8,7 +8,7 @@ use Bogosoft\Http\Routing\Actions\MethodNotAllowedAction;
 use Bogosoft\Http\Routing\IAction;
 use Bogosoft\Http\Session\DefaultSession;
 use Bogosoft\Http\Session\ISession;
-use Psr\Http\Message\ServerRequestInterface as IServerRequest;
+use Psr\Http\Message\ServerRequestInterface as IRequest;
 
 /**
  * A default action context activation strategy that will activate the
@@ -54,7 +54,7 @@ class DefaultActionContextActivator implements IActionContextActivator
     /**
      * @inheritDoc
      */
-    function activateContext(ActionContext $context, IServerRequest $request): ?IAction
+    function activateContext(ActionContext $context, IRequest $request): ?IAction
     {
         if ($context instanceof MethodNotAllowedActionContext)
             return new MethodNotAllowedAction($context->getAllowedMethods());
@@ -76,11 +76,11 @@ class DefaultActionContextActivator implements IActionContextActivator
      *
      * By default, this method simply returns {@see null}.
      *
-     * @param  IServerRequest $request An HTTP request from which a model
-     *                                 will be extracted.
-     * @return mixed|null              An extracted model.
+     * @param  IRequest   $request An HTTP request from which a model will be
+     *                             extracted.
+     * @return mixed|null          An extracted model.
      */
-    protected function extractViewModel(IServerRequest $request)
+    protected function extractViewModel(IRequest $request)
     {
         return null;
     }
@@ -89,13 +89,13 @@ class DefaultActionContextActivator implements IActionContextActivator
      * Extract parameters for a view from an HTTP request.
      *
      * By default, this method simply returns the result of calling the
-     * {@see IServerRequest::getQueryParams()} method.
+     * {@see IRequest::getQueryParams()} method.
      *
-     * @param  IServerRequest $request An HTTP request from which view
-     *                                 parameters will be extracted.
-     * @return array                   An array of view parameters.
+     * @param  IRequest $request An HTTP request from which view parameters
+     *                           will be extracted.
+     * @return array             An array of view parameters.
      */
-    protected function extractViewParameters(IServerRequest $request): array
+    protected function extractViewParameters(IRequest $request): array
     {
         return $request->getQueryParams();
     }
@@ -115,7 +115,7 @@ class DefaultActionContextActivator implements IActionContextActivator
         )
         : IControllerFactory
     {
-        $create = function(string $class, IServerRequest $request) use (&$controllers): ?Controller
+        $create = function(string $class, IRequest $request) use (&$controllers): ?Controller
         {
             $controller = $controllers->createController($class, $request);
 
@@ -143,7 +143,7 @@ class DefaultActionContextActivator implements IActionContextActivator
      *
      * @param  ControllerActionContext $context     A controller action
      *                                              context.
-     * @param  IServerRequest          $request     An HTTP request.
+     * @param  IRequest                $request     An HTTP request.
      * @param  IControllerFactory      $controllers A strategy for creating
      *                                              controllers.
      * @param  IParameterMatcher       $matcher     A strategy for matching
@@ -153,7 +153,7 @@ class DefaultActionContextActivator implements IActionContextActivator
      */
     protected function handleControllerActionContext(
         ControllerActionContext $context,
-        IServerRequest $request,
+        IRequest $request,
         IControllerFactory $controllers,
         IParameterMatcher $matcher
         )
@@ -171,13 +171,13 @@ class DefaultActionContextActivator implements IActionContextActivator
      * Activate a view context action, generating a corresponding view action.
      *
      * @param  ViewActionContext $context A view action context.
-     * @param  IServerRequest    $request An HTTP request.
+     * @param  IRequest          $request An HTTP request.
      * @param  IViewFactory      $views   A strategy for creating views.
      * @return IAction
      */
     protected function handleViewActionContext(
         ViewActionContext $context,
-        IServerRequest $request,
+        IRequest $request,
         IViewFactory $views
         )
         : IAction

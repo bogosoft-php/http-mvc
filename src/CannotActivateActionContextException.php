@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace Bogosoft\Http\Mvc;
 
-use Psr\Http\Message\ServerRequestInterface as IServerRequest;
+use Psr\Http\Message\ServerRequestInterface as IRequest;
 use RuntimeException;
 use Throwable;
 
@@ -16,20 +16,20 @@ use Throwable;
  */
 class CannotActivateActionContextException extends RuntimeException
 {
-    private IServerRequest $request;
+    private IRequest $request;
 
     /**
      * Create a new exception related to being unable to activate an action
      * context.
      *
-     * @param IServerRequest $request  The HTTP request for which a
+     * @param IRequest       $request  The HTTP request for which a
      *                                 corresponding action context could not
      *                                 be activated.
      * @param int            $code     An optional exception code.
      * @param Throwable|null $previous An optional previous exception.
      */
     function __construct(
-        IServerRequest $request,
+        IRequest $request,
         int $code = 0,
         Throwable $previous = null
         )
@@ -44,10 +44,10 @@ class CannotActivateActionContextException extends RuntimeException
     }
 
     /**
-     * @return IServerRequest Get the HTTP request associated with the current
-     *                        exception.
+     * @return IRequest Get the HTTP request associated with the current
+     *                  exception.
      */
-    function getRequest(): IServerRequest
+    function getRequest(): IRequest
     {
         return $this->request;
     }

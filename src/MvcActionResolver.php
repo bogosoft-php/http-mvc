@@ -7,7 +7,7 @@ namespace Bogosoft\Http\Mvc;
 use Bogosoft\Http\Routing\FilteredAction;
 use Bogosoft\Http\Routing\IAction;
 use Bogosoft\Http\Routing\IActionResolver;
-use Psr\Http\Message\ServerRequestInterface as IServerRequest;
+use Psr\Http\Message\ServerRequestInterface as IRequest;
 
 /**
  * An MVC-based action resolution strategy.
@@ -44,7 +44,7 @@ abstract class MvcActionResolver implements IActionResolver
      * When overridden in a derived class, generates an action context against
      * a given HTTP request.
      *
-     * @param  IServerRequest     $request An HTTP request against which an
+     * @param  IRequest           $request An HTTP request against which an
      *                                     action context will be generated.
      * @return ActionContext|null          An action context. Implementations
      *                                     SHOULD return {@see null} if an
@@ -52,7 +52,7 @@ abstract class MvcActionResolver implements IActionResolver
      *                                     generated against the given HTTP
      *                                     request.
      */
-    protected abstract function getActionContext(IServerRequest $request): ?ActionContext;
+    protected abstract function getActionContext(IRequest $request): ?ActionContext;
 
     private function getActionFilters(ActionContext $context): iterable
     {
@@ -78,7 +78,7 @@ abstract class MvcActionResolver implements IActionResolver
     /**
      * @inheritDoc
      */
-    function resolve(IServerRequest $request): ?IAction
+    function resolve(IRequest $request): ?IAction
     {
         $context = $this->getActionContext($request);
 

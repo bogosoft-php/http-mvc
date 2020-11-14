@@ -7,14 +7,14 @@ namespace Tests;
 use Bogosoft\Http\Routing\IAction;
 use Bogosoft\Http\Routing\IActionFilter;
 use Bogosoft\Http\Routing\Results\StatusCodeResult;
-use Psr\Http\Message\ServerRequestInterface as IServerRequest;
+use Psr\Http\Message\ServerRequestInterface as IRequest;
 
 class HasUserInfoFilter implements IActionFilter
 {
     /**
      * @inheritDoc
      */
-    function apply(IServerRequest $request, IAction $action)
+    function apply(IRequest $request, IAction $action)
     {
         $userInfo = $request->getUri()->getUserInfo();
 

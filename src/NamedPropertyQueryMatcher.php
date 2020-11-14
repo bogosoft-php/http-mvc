@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace Bogosoft\Http\Mvc;
 
-use Psr\Http\Message\ServerRequestInterface as IServerRequest;
+use Psr\Http\Message\ServerRequestInterface as IRequest;
 use ReflectionProperty;
 
 /**
@@ -18,7 +18,7 @@ class NamedPropertyQueryMatcher implements IPropertyMatcher
     /**
      * @inheritDoc
      */
-    function tryMatch(ReflectionProperty $rp, IServerRequest $request, &$result): bool
+    function tryMatch(ReflectionProperty $rp, IRequest $request, &$result): bool
     {
         $params = $request->getQueryParams();
 

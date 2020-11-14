@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace Bogosoft\Http\Mvc;
 
-use Psr\Http\Message\ServerRequestInterface as IServerRequest;
+use Psr\Http\Message\ServerRequestInterface as IRequest;
 use ReflectionProperty;
 
 /**
@@ -33,7 +33,7 @@ final class CompositePropertyMatcher implements IPropertyMatcher
     /**
      * @inheritDoc
      */
-    function tryMatch(ReflectionProperty $rp, IServerRequest $request, &$result): bool
+    function tryMatch(ReflectionProperty $rp, IRequest $request, &$result): bool
     {
         foreach ($this->matchers as $matcher)
             if ($matcher->tryMatch($rp, $request, $result))

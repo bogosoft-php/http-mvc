@@ -6,14 +6,14 @@ namespace Tests;
 
 use Bogosoft\Http\Mvc\Controller;
 use Bogosoft\Http\Mvc\IControllerFactory;
-use Psr\Http\Message\ServerRequestInterface as IServerRequest;
+use Psr\Http\Message\ServerRequestInterface as IRequest;
 
 final class EmptyControllerFactory implements IControllerFactory
 {
     /**
      * @inheritDoc
      */
-    function createController(string $class, IServerRequest $request): ?Controller
+    function createController(string $class, IRequest $request): ?Controller
     {
         return null;
     }

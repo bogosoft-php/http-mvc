@@ -6,7 +6,7 @@ namespace Bogosoft\Http\Mvc;
 
 use Bogosoft\Http\Routing\IAction;
 use Bogosoft\Http\Routing\Results\NotFoundResult;
-use Psr\Http\Message\ServerRequestInterface as IServerRequest;
+use Psr\Http\Message\ServerRequestInterface as IRequest;
 
 /**
  * An implementation of the {@see IAction} contract that creates a view result
@@ -46,7 +46,7 @@ class ViewAction implements IAction
     /**
      * @inheritDoc
      */
-    function execute(IServerRequest $request)
+    function execute(IRequest $request)
     {
         $view = $this->views->createView($this->name, $this->model, $this->parameters);
 

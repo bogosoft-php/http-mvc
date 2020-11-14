@@ -8,7 +8,7 @@ use Bogosoft\Http\Routing\IActionResult;
 use Bogosoft\Http\Routing\Results\BadRequestResult;
 use Bogosoft\Http\Routing\Results\NotFoundResult;
 use Bogosoft\Http\Session\ISession;
-use Psr\Http\Message\ServerRequestInterface as IServerRequest;
+use Psr\Http\Message\ServerRequestInterface as IRequest;
 use RuntimeException;
 
 /**
@@ -19,7 +19,7 @@ use RuntimeException;
 abstract class Controller
 {
     private bool $locked = false;
-    private IServerRequest $request;
+    private IRequest $request;
     private ISession $session;
     private IViewFactory $views;
 
@@ -36,9 +36,9 @@ abstract class Controller
     /**
      * Get the HTTP request associated with the current controller.
      *
-     * @return IServerRequest An HTTP request.
+     * @return IRequest An HTTP request.
      */
-    protected function getRequest(): IServerRequest
+    protected function getRequest(): IRequest
     {
         return $this->request;
     }
@@ -83,11 +83,11 @@ abstract class Controller
     /**
      * Associate an HTTP request with the current controller.
      *
-     * @param IServerRequest $request An HTTP request.
+     * @param IRequest $request An HTTP request.
      *
      * @throws RuntimeException if the controller has already been locked.
      */
-    function setRequest(IServerRequest $request): void
+    function setRequest(IRequest $request): void
     {
         if ($this->locked)
             throw new RuntimeException('Controller is locked.');

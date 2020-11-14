@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace Bogosoft\Http\Mvc;
 
-use Psr\Http\Message\ServerRequestInterface as IServerRequest;
+use Psr\Http\Message\ServerRequestInterface as IRequest;
 
 /**
  * A composite implementation of the {@see IControllerFactory} that allows
@@ -37,7 +37,7 @@ final class CompositeControllerFactory implements IControllerFactory
     /**
      * @inheritDoc
      */
-    function createController(string $class, IServerRequest $request): ?Controller
+    function createController(string $class, IRequest $request): ?Controller
     {
         /** @var Controller $controller */
         $controller = null;

@@ -14,7 +14,7 @@ use Bogosoft\Http\Mvc\ValueObjectParameterMatcher;
 use GuzzleHttp\Psr7\Response;
 use GuzzleHttp\Psr7\ServerRequest;
 use PHPUnit\Framework\TestCase;
-use Psr\Http\Message\ServerRequestInterface as IServerRequest;
+use Psr\Http\Message\ServerRequestInterface as IRequest;
 
 class ControllerActionTest extends TestCase
 {
@@ -22,7 +22,7 @@ class ControllerActionTest extends TestCase
     {
         $factory = new class implements IControllerFactory
         {
-            function createController(string $class, IServerRequest $request): ?Controller
+            function createController(string $class, IRequest $request): ?Controller
             {
                 return new class extends Controller
                 {
@@ -126,7 +126,7 @@ class ControllerActionTest extends TestCase
                 $this->format = $format;
             }
 
-            function createController(string $class, IServerRequest $request): ?Controller
+            function createController(string $class, IRequest $request): ?Controller
             {
                 return $this;
             }
@@ -176,7 +176,7 @@ class ControllerActionTest extends TestCase
             /**
              * @inheritDoc
              */
-            function createController(string $class, IServerRequest $request): ?Controller
+            function createController(string $class, IRequest $request): ?Controller
             {
                 return $this;
             }
@@ -216,7 +216,7 @@ class ControllerActionTest extends TestCase
             /**
              * @inheritDoc
              */
-            function createController(string $class, IServerRequest $request): ?Controller
+            function createController(string $class, IRequest $request): ?Controller
             {
                 return $this;
             }

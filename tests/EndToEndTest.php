@@ -26,7 +26,7 @@ use Bogosoft\Http\Routing\IActionResult;
 use GuzzleHttp\Psr7\Response;
 use GuzzleHttp\Psr7\ServerRequest;
 use PHPUnit\Framework\TestCase;
-use Psr\Http\Message\ServerRequestInterface as IServerRequest;
+use Psr\Http\Message\ServerRequestInterface as IRequest;
 
 class EndToEndTest extends TestCase
 {
@@ -43,7 +43,7 @@ class EndToEndTest extends TestCase
                 $this->repo = $repo;
             }
 
-            function createController(string $class, IServerRequest $request): ?Controller
+            function createController(string $class, IRequest $request): ?Controller
             {
                 if (ProductsController::class === $class)
                     return new ProductsController($this->repo);
@@ -78,7 +78,7 @@ class EndToEndTest extends TestCase
             /**
              * @inheritDoc
              */
-            protected function getActionContext(IServerRequest $request): ?ActionContext
+            protected function getActionContext(IRequest $request): ?ActionContext
             {
                 $method = strtolower($request->getMethod());
                 $path   = strtolower($request->getUri()->getPath());

@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace Bogosoft\Http\Mvc;
 
-use Psr\Http\Message\ServerRequestInterface as IServerRequest;
+use Psr\Http\Message\ServerRequestInterface as IRequest;
 
 /**
  * An implementation of the {@see IControllerFactory} that delegates
@@ -12,7 +12,7 @@ use Psr\Http\Message\ServerRequestInterface as IServerRequest;
  *
  * The delegate is expected to be of the form:
  *
- * - fn({@see string}, {@see IServerRequest}): {@see Controller}|{@see null}
+ * - fn({@see string}, {@see IRequest}): {@see Controller}|{@see null}
  *
  * This class cannot be inherited.
  *
@@ -37,7 +37,7 @@ final class DelegatedControllerFactory implements IControllerFactory
     /**
      * @inheritDoc
      */
-    function createController(string $class, IServerRequest $request): ?Controller
+    function createController(string $class, IRequest $request): ?Controller
     {
         return ($this->delegate)($class, $request);
     }

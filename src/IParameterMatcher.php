@@ -2,7 +2,7 @@
 
 namespace Bogosoft\Http\Mvc;
 
-use Psr\Http\Message\ServerRequestInterface as IServerRequest;
+use Psr\Http\Message\ServerRequestInterface as IRequest;
 use ReflectionParameter;
 
 /**
@@ -18,7 +18,7 @@ interface IParameterMatcher
      * method parameter.
      *
      * @param  ReflectionParameter $rp      A class method parameter.
-     * @param  IServerRequest      $request An HTTP request.
+     * @param  IRequest            $request An HTTP request.
      * @param  mixed               $result  The result of matching the given
      *                                      HTTP data to a given class method
      *                                      parameter.
@@ -27,7 +27,7 @@ interface IParameterMatcher
      */
     function tryMatch(
         ReflectionParameter $rp,
-        IServerRequest $request,
+        IRequest $request,
         &$result
         )
         : bool;

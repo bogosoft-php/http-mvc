@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace Bogosoft\Http\Mvc;
 
 use Bogosoft\Http\Routing\IAction;
-use Psr\Http\Message\ServerRequestInterface as IServerRequest;
+use Psr\Http\Message\ServerRequestInterface as IRequest;
 
 /**
  * A composite implementation of the {@see IActionContextActivator} contract
@@ -35,7 +35,7 @@ final class CompositeActionContextActivator implements IActionContextActivator
     /**
      * @inheritDoc
      */
-    function activateContext(ActionContext $context, IServerRequest $request): ?IAction
+    function activateContext(ActionContext $context, IRequest $request): ?IAction
     {
         foreach ($this->activators as $activator)
             if (null !== ($action = $activator->activateContext($context, $request)))

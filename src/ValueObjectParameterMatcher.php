@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace Bogosoft\Http\Mvc;
 
-use Psr\Http\Message\ServerRequestInterface as IServerRequest;
+use Psr\Http\Message\ServerRequestInterface as IRequest;
 use ReflectionParameter;
 use ReflectionProperty;
 
@@ -33,7 +33,7 @@ class ValueObjectParameterMatcher implements IParameterMatcher
     /**
      * @inheritDoc
      */
-    function tryMatch(ReflectionParameter $rp, IServerRequest $request, &$result): bool
+    function tryMatch(ReflectionParameter $rp, IRequest $request, &$result): bool
     {
         if (null === ($rc = $rp->getClass()))
             return false;

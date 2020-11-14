@@ -2,7 +2,7 @@
 
 namespace Bogosoft\Http\Mvc;
 
-use Psr\Http\Message\ServerRequestInterface as IServerRequest;
+use Psr\Http\Message\ServerRequestInterface as IRequest;
 use ReflectionProperty;
 
 /**
@@ -17,7 +17,7 @@ interface IPropertyMatcher
      * property.
      *
      * @param  ReflectionProperty $rp      A class property.
-     * @param  IServerRequest     $request An HTTP request.
+     * @param  IRequest           $request An HTTP request.
      * @param  mixed              $result  The result of matching the given
      *                                     HTTP data to a class property.
      * @return bool                        A value indicating whether or not
@@ -25,7 +25,7 @@ interface IPropertyMatcher
      */
     function tryMatch(
         ReflectionProperty $rp,
-        IServerRequest $request,
+        IRequest $request,
         &$result
         )
         : bool;
