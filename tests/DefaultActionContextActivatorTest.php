@@ -20,12 +20,7 @@ class DefaultActionContextActivatorTest extends TestCase
 {
     function testControllerActionContextResolvesToControllerAction(): void
     {
-        $context = new ControllerActionContext();
-
-        $context->controllerClass   = '';
-        $context->filterDefinitions = [];
-        $context->methodName        = '';
-        $context->parameters        = [];
+        $context = new ControllerActionContext('', '', []);
 
         $controllers = new EmptyControllerFactory();
         $views       = new EmptyViewFactory();

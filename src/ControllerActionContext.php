@@ -14,13 +14,11 @@ class ControllerActionContext extends ActionContext
 {
     static function __set_state($data)
     {
-        $context = new ControllerActionContext();
-
-        $context->controllerClass   = $data['controllerClass'];
-        $context->filterDefinitions = $data['filterDefinitions'];
-        $context->methodName        = $data['methodName'];
-
-        return $context;
+        return new ControllerActionContext(
+            $data['controllerClass'],
+            $data['methodName'],
+            $data['filterDefinitions']
+            );
     }
 
     /**
@@ -32,4 +30,23 @@ class ControllerActionContext extends ActionContext
      * @var string Get or set the name of a method on a controller.
      */
     public string $methodName;
+
+    /**
+     * Create a new controller action context.
+     *
+     * @param string $controllerClass   A controller class name.
+     * @param string $methodName        The name of an action method defined
+     *                                  on the given class.
+     * @param array  $filterDefinitions An array of action filter definitions.
+     */
+    function __construct(
+        string $controllerClass,
+        string $methodName,
+        array $filterDefinitions = []
+        )
+    {
+        $this->controllerClass   = $controllerClass;
+        $this->filterDefinitions = $filterDefinitions;
+        $this->methodName        = $methodName;
+    }
 }
