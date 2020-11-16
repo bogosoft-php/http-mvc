@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Tests\Controllers;
+namespace Bogosoft\Http\Mvc\Tests\Controllers;
 
 use Bogosoft\Http\Mvc\Controller;
 use Bogosoft\Http\Routing\IActionResult;

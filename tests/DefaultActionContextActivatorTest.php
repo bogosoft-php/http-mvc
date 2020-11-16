@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Tests;
+namespace Bogosoft\Http\Mvc\Tests;
 
 use Bogosoft\Http\Mvc\ActionContext;
 use Bogosoft\Http\Mvc\ControllerAction;
@@ -13,8 +13,8 @@ use Bogosoft\Http\Mvc\ViewAction;
 use Bogosoft\Http\Mvc\ViewActionContext;
 use GuzzleHttp\Psr7\ServerRequest;
 use PHPUnit\Framework\TestCase;
-use Tests\Factories\EmptyControllerFactory;
-use Tests\Factories\EmptyViewFactory;
+use Bogosoft\Http\Mvc\Tests\Factories\EmptyControllerFactory;
+use Bogosoft\Http\Mvc\Tests\Factories\EmptyViewFactory;
 
 class DefaultActionContextActivatorTest extends TestCase
 {

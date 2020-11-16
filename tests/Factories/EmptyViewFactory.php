@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Tests\Factories;
+namespace Bogosoft\Http\Mvc\Tests\Factories;
 
 use Bogosoft\Http\Mvc\IView;
 use Bogosoft\Http\Mvc\IViewFactory;

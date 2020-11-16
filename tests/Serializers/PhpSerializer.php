@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Tests\Serializers;
+namespace Bogosoft\Http\Mvc\Tests\Serializers;
 
 use Bogosoft\Http\Mvc\Serialization\ISerializer;
 use Bogosoft\Http\Mvc\Serialization\RequestedMediaFormat;

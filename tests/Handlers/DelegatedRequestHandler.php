@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Tests\Handlers;
+namespace Bogosoft\Http\Mvc\Tests\Handlers;
 
 use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\ServerRequestInterface;

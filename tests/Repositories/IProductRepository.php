@@ -1,8 +1,8 @@
 <?php
 
-namespace Tests\Repositories;
+namespace Bogosoft\Http\Mvc\Tests\Repositories;
 
-use Tests\Models\Product;
+use Bogosoft\Http\Mvc\Tests\Models\Product;
 
 interface IProductRepository
 {

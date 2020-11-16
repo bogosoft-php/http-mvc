@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Tests;
+namespace Bogosoft\Http\Mvc\Tests;
 
 use Bogosoft\Http\Mvc\Controller;
 use Bogosoft\Http\Mvc\ControllerAction;
@@ -15,7 +15,7 @@ use GuzzleHttp\Psr7\Response;
 use GuzzleHttp\Psr7\ServerRequest;
 use PHPUnit\Framework\TestCase;
 use Psr\Http\Message\ServerRequestInterface as IRequest;
-use Tests\Models\OperandCollection;
+use Bogosoft\Http\Mvc\Tests\Models\OperandCollection;
 
 class ControllerActionTest extends TestCase
 {

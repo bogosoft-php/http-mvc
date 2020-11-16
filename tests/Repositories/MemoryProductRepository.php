@@ -2,9 +2,9 @@
 
 declare(strict_types=1);
 
-namespace Tests\Repositories;
+namespace Bogosoft\Http\Mvc\Tests\Repositories;
 
-use Tests\Models\Product;
+use Bogosoft\Http\Mvc\Tests\Models\Product;
 
 final class MemoryProductRepository implements IProductRepository
 {

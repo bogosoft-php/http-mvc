@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Tests\Actions;
+namespace Bogosoft\Http\Mvc\Tests\Actions;
 
 use Bogosoft\Http\Routing\IAction;
 use Bogosoft\Http\Routing\Results\StatusCodeResult;

@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Tests\Factories;
+namespace Bogosoft\Http\Mvc\Tests\Factories;
 
 use GuzzleHttp\Psr7\Response;
 use Psr\Http\Message\ResponseFactoryInterface;

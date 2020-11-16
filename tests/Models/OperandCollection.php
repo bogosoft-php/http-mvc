@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Tests\Models;
+namespace Bogosoft\Http\Mvc\Tests\Models;
 
 class OperandCollection
 {

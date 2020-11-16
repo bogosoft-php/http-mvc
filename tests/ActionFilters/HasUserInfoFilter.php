@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Tests\ActionFilters;
+namespace Bogosoft\Http\Mvc\Tests\ActionFilters;
 
 use Bogosoft\Http\Routing\IAction;
 use Bogosoft\Http\Routing\IActionFilter;

@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Tests;
+namespace Bogosoft\Http\Mvc\Tests;
 
 use Bogosoft\Http\Mvc\ActionContext;
 use Bogosoft\Http\Mvc\CannotActivateActionContextException;
@@ -19,12 +19,12 @@ use PHPUnit\Framework\TestCase;
 use Psr\Http\Message\ResponseFactoryInterface;
 use Psr\Http\Message\ResponseInterface as IResponse;
 use Psr\Http\Message\ServerRequestInterface as IRequest;
-use Tests\Actions\ObjectAction;
-use Tests\Actions\SetStatusCodeAction;
-use Tests\Factories\SimpleResponseFactory;
-use Tests\Handlers\DelegatedRequestHandler;
-use Tests\Handlers\StatusCodeConfigurableRequestHandler;
-use Tests\Serializers\PhpSerializer;
+use Bogosoft\Http\Mvc\Tests\Actions\ObjectAction;
+use Bogosoft\Http\Mvc\Tests\Actions\SetStatusCodeAction;
+use Bogosoft\Http\Mvc\Tests\Factories\SimpleResponseFactory;
+use Bogosoft\Http\Mvc\Tests\Handlers\DelegatedRequestHandler;
+use Bogosoft\Http\Mvc\Tests\Handlers\StatusCodeConfigurableRequestHandler;
+use Bogosoft\Http\Mvc\Tests\Serializers\PhpSerializer;
 
 class MvcMiddlewareTest extends TestCase
 {

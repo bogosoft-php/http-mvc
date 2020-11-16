@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Tests;
+namespace Bogosoft\Http\Mvc\Tests;
 
 use Bogosoft\Http\Mvc\IView;
 use Bogosoft\Http\Mvc\IViewFactory;
@@ -11,7 +11,7 @@ use Bogosoft\Http\Mvc\ViewResult;
 use Bogosoft\Http\Routing\Results\NotFoundResult;
 use GuzzleHttp\Psr7\ServerRequest;
 use PHPUnit\Framework\TestCase;
-use Tests\Factories\EmptyViewFactory;
+use Bogosoft\Http\Mvc\Tests\Factories\EmptyViewFactory;
 
 class ViewActionTest extends TestCase
 {
