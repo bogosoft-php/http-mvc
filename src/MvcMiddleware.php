@@ -4,7 +4,6 @@ declare(strict_types=1);
 
 namespace Bogosoft\Http\Mvc;
 
-use Bogosoft\Http\Mvc\Results\ObjectResult;
 use Bogosoft\Http\Mvc\Serialization\ISerializer;
 use Bogosoft\Http\Mvc\Serialization\JsonSerializer;
 use Bogosoft\Http\Mvc\Serialization\RequestedMediaFormat;

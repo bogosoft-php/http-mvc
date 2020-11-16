@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Bogosoft\Http\Mvc\Results;
+namespace Bogosoft\Http\Mvc;
 
 use Bogosoft\Http\Mvc\Serialization\ISerializer;
 use Bogosoft\Http\Routing\IActionResult;
