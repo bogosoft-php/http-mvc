@@ -4,8 +4,6 @@ declare(strict_types=1);
 
 namespace Bogosoft\Http\Mvc;
 
-use Bogosoft\Http\Routing\IActionFilter;
-
 /**
  * An implementation of the {@see IActionFilterFactory} contract that
  * delegates the creation of action filters to a {@see callable} object.

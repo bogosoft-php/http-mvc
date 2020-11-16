@@ -4,8 +4,6 @@ declare(strict_types=1);
 
 namespace Bogosoft\Http\Mvc;
 
-use Bogosoft\Http\Routing\IAction;
-use Bogosoft\Http\Routing\Results\NotFoundResult;
 use Psr\Http\Message\ServerRequestInterface as IRequest;
 
 /**

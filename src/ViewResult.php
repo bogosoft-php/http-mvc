@@ -4,7 +4,6 @@ declare(strict_types=1);
 
 namespace Bogosoft\Http\Mvc;
 
-use Bogosoft\Http\Routing\IActionResult;
 use Psr\Http\Message\ResponseInterface as IResponse;
 
 /**

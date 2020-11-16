@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace Bogosoft\Http\Mvc\Tests\Actions;
 
-use Bogosoft\Http\Routing\IAction;
+use Bogosoft\Http\Mvc\IAction;
 use Psr\Http\Message\ServerRequestInterface as IServerRequest;
 
 class ObjectAction implements IAction

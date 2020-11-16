@@ -4,44 +4,8 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "eb2543c4203fa6c84c45ee6050505a18",
+    "content-hash": "d2e70c69a0843176f4d6e11935732c1e",
     "packages": [
-        {
-            "name": "bogosoft/http-routing",
-            "version": "3.2.0",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/bogosoft-php/http-routing.git",
-                "reference": "dde5a8486b498dcca613e34bd27c12d1668b9d79"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/bogosoft-php/http-routing/zipball/dde5a8486b498dcca613e34bd27c12d1668b9d79",
-                "reference": "dde5a8486b498dcca613e34bd27c12d1668b9d79",
-                "shasum": ""
-            },
-            "require": {
-                "ext-json": "*",
-                "php": ">=7.4",
-                "psr/http-factory": "^1.0",
-                "psr/http-message": "^1.0",
-                "psr/http-server-handler": "^1.0",
-                "psr/http-server-middleware": "^1.0"
-            },
-            "require-dev": {
-                "guzzlehttp/psr7": "^1.6",
-                "phpunit/phpunit": "^9.2"
-            },
-            "type": "library",
-            "autoload": {
-                "psr-4": {
-                    "Bogosoft\\Http\\Routing\\": "src/"
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "description": "Contracts and minimal implementations to support HTTP request routing.",
-            "time": "2020-11-14T15:23:59+00:00"
-        },
         {
             "name": "bogosoft/http-session",
             "version": "1.0.0",

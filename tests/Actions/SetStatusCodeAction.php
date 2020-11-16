@@ -4,8 +4,8 @@ declare(strict_types=1);
 
 namespace Bogosoft\Http\Mvc\Tests\Actions;
 
-use Bogosoft\Http\Routing\IAction;
-use Bogosoft\Http\Routing\Results\StatusCodeResult;
+use Bogosoft\Http\Mvc\IAction;
+use Bogosoft\Http\Mvc\StatusCodeResult;
 use Psr\Http\Message\ServerRequestInterface as IServerRequest;
 
 class SetStatusCodeAction implements IAction

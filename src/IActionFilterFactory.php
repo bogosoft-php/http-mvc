@@ -2,8 +2,6 @@
 
 namespace Bogosoft\Http\Mvc;
 
-use Bogosoft\Http\Routing\IActionFilter;
-
 /**
  * Represents a strategy for creating action filters.
  *

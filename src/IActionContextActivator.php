@@ -2,7 +2,6 @@
 
 namespace Bogosoft\Http\Mvc;
 
-use Bogosoft\Http\Routing\IAction;
 use Psr\Http\Message\ServerRequestInterface as IRequest;
 
 /**

@@ -8,7 +8,7 @@ use Bogosoft\Http\Mvc\IView;
 use Bogosoft\Http\Mvc\IViewFactory;
 use Bogosoft\Http\Mvc\ViewAction;
 use Bogosoft\Http\Mvc\ViewResult;
-use Bogosoft\Http\Routing\Results\NotFoundResult;
+use Bogosoft\Http\Mvc\NotFoundResult;
 use GuzzleHttp\Psr7\ServerRequest;
 use PHPUnit\Framework\TestCase;
 use Bogosoft\Http\Mvc\Tests\Factories\EmptyViewFactory;

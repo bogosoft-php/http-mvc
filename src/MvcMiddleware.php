@@ -7,8 +7,6 @@ namespace Bogosoft\Http\Mvc;
 use Bogosoft\Http\Mvc\Serialization\ISerializer;
 use Bogosoft\Http\Mvc\Serialization\JsonSerializer;
 use Bogosoft\Http\Mvc\Serialization\RequestedMediaFormat;
-use Bogosoft\Http\Routing\IActionResult;
-use Bogosoft\Http\Routing\Results\StatusCodeResult;
 use Psr\Http\Message\ResponseInterface as IResponse;
 use Psr\Http\Message\ServerRequestInterface as IRequest;
 use Psr\Http\Server\MiddlewareInterface as IMiddleware;

@@ -4,9 +4,9 @@ declare(strict_types=1);
 
 namespace Bogosoft\Http\Mvc\Tests\ActionFilters;
 
-use Bogosoft\Http\Routing\IAction;
-use Bogosoft\Http\Routing\IActionFilter;
-use Bogosoft\Http\Routing\Results\StatusCodeResult;
+use Bogosoft\Http\Mvc\IAction;
+use Bogosoft\Http\Mvc\IActionFilter;
+use Bogosoft\Http\Mvc\StatusCodeResult;
 use Psr\Http\Message\ServerRequestInterface as IRequest;
 
 class HasUserInfoFilter implements IActionFilter
