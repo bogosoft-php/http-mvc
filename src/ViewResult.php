@@ -6,7 +6,6 @@ namespace Bogosoft\Http\Mvc;
 
 use Bogosoft\Http\Routing\IActionResult;
 use Psr\Http\Message\ResponseInterface as IResponse;
-use Psr\Http\Message\StreamFactoryInterface;
 
 /**
  * An implementation of the {@see IActionResult} contract that renders a view
@@ -16,7 +15,6 @@ use Psr\Http\Message\StreamFactoryInterface;
  */
 class ViewResult implements IActionResult
 {
-    private StreamFactoryInterface $streams;
     private IView $view;
 
     /**
@@ -35,12 +33,8 @@ class ViewResult implements IActionResult
      */
     function apply(IResponse $response): IResponse
     {
-        $stream = $response->getBody()->detach();
+        $this->view->render($response->getBody());
 
-        $this->view->render($stream);
-
-        $body = $this->streams->createStreamFromResource($stream);
-
-        return $response->withBody($body);
+        return $response->withHeader('Content-Type', 'text/html');
     }
 }
