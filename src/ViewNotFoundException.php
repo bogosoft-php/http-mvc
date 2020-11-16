@@ -4,16 +4,16 @@ declare(strict_types=1);
 
 namespace Bogosoft\Http\Mvc;
 
+use RuntimeException;
+
 /**
  * An exception intended to be thrown when an attempt to create a view failed
  * because the view could not be found by a given name.
  *
  * @package Bogosoft\Http\Mvc
  */
-class ViewNotFoundException extends \RuntimeException
+class ViewNotFoundException extends RuntimeException
 {
-    private string $name;
-
     /**
      * Create a new view-not-found exception.
      *
