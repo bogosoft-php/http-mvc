@@ -4,7 +4,6 @@ declare(strict_types=1);
 
 namespace Tests;
 
-use Bogosoft\Http\DelegatedRequestHandler;
 use Bogosoft\Http\Mvc\ActionContext;
 use Bogosoft\Http\Mvc\CannotActivateActionContextException;
 use Bogosoft\Http\Mvc\DelegatedActionContextActivator;
@@ -23,6 +22,7 @@ use Psr\Http\Message\ServerRequestInterface as IRequest;
 use Tests\Actions\ObjectAction;
 use Tests\Actions\SetStatusCodeAction;
 use Tests\Factories\SimpleResponseFactory;
+use Tests\Handlers\DelegatedRequestHandler;
 use Tests\Handlers\StatusCodeConfigurableRequestHandler;
 use Tests\Serializers\PhpSerializer;
 
