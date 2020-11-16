@@ -22,9 +22,9 @@ use Psr\Http\Message\ServerRequestInterface as IRequest;
 use Bogosoft\Http\Mvc\Tests\Actions\ObjectAction;
 use Bogosoft\Http\Mvc\Tests\Actions\SetStatusCodeAction;
 use Bogosoft\Http\Mvc\Tests\Factories\SimpleResponseFactory;
-use Bogosoft\Http\Mvc\Tests\Handlers\DelegatedRequestHandler;
 use Bogosoft\Http\Mvc\Tests\Handlers\StatusCodeConfigurableRequestHandler;
 use Bogosoft\Http\Mvc\Tests\Serializers\PhpSerializer;
+use Psr\Http\Server\RequestHandlerInterface;
 
 class MvcMiddlewareTest extends TestCase
 {
@@ -43,8 +43,20 @@ class MvcMiddlewareTest extends TestCase
 
         $expected = 404;
 
-        $handler = new DelegatedRequestHandler(
-            fn(IRequest $request): IResponse => new Response($expected));
+        $handler = new class($expected) implements RequestHandlerInterface
+        {
+            private int $code;
+
+            function __construct(int $code)
+            {
+                $this->code = $code;
+            }
+
+            public function handle(IRequest $request): IResponse
+            {
+                return new Response($this->code);
+            }
+        };
 
         $this->assertNull($actions($request));
 
