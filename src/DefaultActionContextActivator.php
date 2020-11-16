@@ -162,7 +162,7 @@ class DefaultActionContextActivator implements IActionContextActivator
             $context->controllerClass,
             $context->methodName,
             $matcher
-        );
+            );
     }
 
     /**
