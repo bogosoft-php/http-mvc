@@ -10,7 +10,7 @@ use Psr\Http\Message\ResponseInterface as IResponse;
  * An action result that will modify an HTTP response to indicate that the
  * request HTTP method was not allowed.
  *
- * @package Bogosoft\Http\Routing\Results
+ * @package Bogosoft\Http\Mvc
  */
 class MethodNotAllowedResult extends StatusCodeResult
 {

@@ -10,7 +10,7 @@ use Psr\Http\Message\ServerRequestInterface as IServerRequest;
  * An action that, when executed, will generate a result indicating that the
  * requested resource could not be found.
  *
- * @package Bogosoft\Http\Routing\Actions
+ * @package Bogosoft\Http\Mvc
  */
 class NotFoundAction implements IAction
 {

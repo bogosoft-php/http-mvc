@@ -7,7 +7,7 @@ use Psr\Http\Message\ServerRequestInterface as IServerRequest;
 /**
  * A strategy for filtering either the input to, or output from, an action.
  *
- * @package Bogosoft\Http\Routing
+ * @package Bogosoft\Http\Mvc
  */
 interface IActionFilter
 {

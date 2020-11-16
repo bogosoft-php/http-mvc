@@ -9,7 +9,7 @@ use IteratorAggregate;
 /**
  * Represents a first-in, first-out (FIFO) collection of action filters.
  *
- * @package Bogosoft\Http\Routing
+ * @package Bogosoft\Http\Mvc
  */
 class ActionFilterQueue implements IteratorAggregate
 {

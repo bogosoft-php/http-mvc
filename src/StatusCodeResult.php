@@ -10,7 +10,7 @@ use Psr\Http\Message\ResponseInterface as IResponse;
  * A generic action result that, when applied to an HTTP response, sets
  * a status code.
  *
- * @package Bogosoft\Http\Routing\Results
+ * @package Bogosoft\Http\Mvc
  */
 class StatusCodeResult implements IActionResult
 {

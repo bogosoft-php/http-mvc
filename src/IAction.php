@@ -7,7 +7,7 @@ use Psr\Http\Message\ServerRequestInterface as IServerRequest;
 /**
  * Represents an action executable against an HTTP request.
  *
- * @package Bogosoft\Http\Routing
+ * @package Bogosoft\Http\Mvc
  */
 interface IAction
 {

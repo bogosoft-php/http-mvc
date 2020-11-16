@@ -8,7 +8,7 @@ namespace Bogosoft\Http\Mvc;
  * An action result that will modify an HTTP response to indicate that the
  * client submitted a bad HTTP request..
  *
- * @package Bogosoft\Http\Routing\Results
+ * @package Bogosoft\Http\Mvc
  */
 class BadRequestResult extends StatusCodeResult
 {

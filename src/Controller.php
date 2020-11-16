@@ -4,9 +4,6 @@ declare(strict_types=1);
 
 namespace Bogosoft\Http\Mvc;
 
-use Bogosoft\Http\Routing\Results\BadRequestResult;
-use Bogosoft\Http\Routing\Results\NotFoundResult;
-use Bogosoft\Http\Routing\Results\OkResult;
 use Bogosoft\Http\Session\ISession;
 use Psr\Http\Message\ServerRequestInterface as IRequest;
 use RuntimeException;

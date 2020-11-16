@@ -7,7 +7,7 @@ use Psr\Http\Message\ResponseInterface as IResponse;
 /**
  * Represents the result of executing an action against an HTTP request.
  *
- * @package Bogosoft\Http\Routing
+ * @package Bogosoft\Http\Mvc
  */
 interface IActionResult
 {

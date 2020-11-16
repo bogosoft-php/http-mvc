@@ -16,7 +16,7 @@ use Psr\Http\Message\ResponseInterface as IResponse;
  *
  * This class cannot be inherited.
  *
- * @package Bogosoft\Http\Routing
+ * @package Bogosoft\Http\Mvc
  */
 final class DelegatedActionResult implements IActionResult
 {

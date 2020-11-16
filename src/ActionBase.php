@@ -8,7 +8,7 @@ namespace Bogosoft\Http\Mvc;
  * A base implementation of the {@see IAction} contract providing common
  * utility functionality.
  *
- * @package Bogosoft\Http\Routing
+ * @package Bogosoft\Http\Mvc
  */
 abstract class ActionBase implements IAction
 {

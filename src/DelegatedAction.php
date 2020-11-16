@@ -16,7 +16,7 @@ use Psr\Http\Message\ServerRequestInterface as IServerRequest;
  *
  * This class cannot be inherited.
  *
- * @package Bogosoft\Http\Routing
+ * @package Bogosoft\Http\Mvc
  */
 final class DelegatedAction implements IAction
 {

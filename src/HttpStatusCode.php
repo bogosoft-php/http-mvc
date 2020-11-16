@@ -7,7 +7,7 @@ namespace Bogosoft\Http\Mvc;
 /**
  * A collection of integer HTTP status codes by their common names.
  *
- * @package Bogosoft\Http\Routing
+ * @package Bogosoft\Http\Mvc
  */
 class HttpStatusCode
 {

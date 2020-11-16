@@ -8,7 +8,7 @@ namespace Bogosoft\Http\Mvc;
  * An action result that will modify an HTTP response to indicate that the
  * requested resource was not found.
  *
- * @package Bogosoft\Http\Routing\Results
+ * @package Bogosoft\Http\Mvc
  */
 class NotFoundResult extends StatusCodeResult
 {

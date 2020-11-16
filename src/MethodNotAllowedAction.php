@@ -9,7 +9,7 @@ use Psr\Http\Message\ServerRequestInterface as IServerRequest;
 /**
  * An action that, when executed, will generate a method not allowed result.
  *
- * @package Bogosoft\Http\Routing\Actions
+ * @package Bogosoft\Http\Mvc
  */
 class MethodNotAllowedAction implements IAction
 {
