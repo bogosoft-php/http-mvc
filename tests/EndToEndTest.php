@@ -23,6 +23,11 @@ use GuzzleHttp\Psr7\Response;
 use GuzzleHttp\Psr7\ServerRequest;
 use PHPUnit\Framework\TestCase;
 use Psr\Http\Message\ServerRequestInterface as IRequest;
+use Tests\ActionFilters\HasUserInfoFilter;
+use Tests\Controllers\ProductsController;
+use Tests\Models\Product;
+use Tests\Repositories\IProductRepository;
+use Tests\Repositories\MemoryProductRepository;
 
 class EndToEndTest extends TestCase
 {

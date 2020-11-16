@@ -1,6 +1,8 @@
 <?php
 
-namespace Tests;
+namespace Tests\Repositories;
+
+use Tests\Models\Product;
 
 interface IProductRepository
 {

@@ -2,11 +2,13 @@
 
 declare(strict_types=1);
 
-namespace Tests;
+namespace Tests\Controllers;
 
 use Bogosoft\Http\Mvc\Controller;
 use Bogosoft\Http\Routing\IActionResult;
 use Bogosoft\Http\Routing\Results\StatusCodeResult;
+use Tests\Repositories\IProductRepository;
+use Tests\Models\Product;
 
 class ProductsController extends Controller
 {

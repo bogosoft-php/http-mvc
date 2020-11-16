@@ -11,6 +11,7 @@ use Bogosoft\Http\Mvc\ViewResult;
 use Bogosoft\Http\Routing\Results\NotFoundResult;
 use GuzzleHttp\Psr7\ServerRequest;
 use PHPUnit\Framework\TestCase;
+use Tests\Factories\EmptyViewFactory;
 
 class ViewActionTest extends TestCase
 {

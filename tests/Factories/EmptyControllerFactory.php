@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Tests;
+namespace Tests\Factories;
 
 use Bogosoft\Http\Mvc\Controller;
 use Bogosoft\Http\Mvc\IControllerFactory;

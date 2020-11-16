@@ -13,6 +13,8 @@ use Bogosoft\Http\Mvc\ViewAction;
 use Bogosoft\Http\Mvc\ViewActionContext;
 use GuzzleHttp\Psr7\ServerRequest;
 use PHPUnit\Framework\TestCase;
+use Tests\Factories\EmptyControllerFactory;
+use Tests\Factories\EmptyViewFactory;
 
 class DefaultActionContextActivatorTest extends TestCase
 {

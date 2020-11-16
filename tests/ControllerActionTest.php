@@ -15,6 +15,7 @@ use GuzzleHttp\Psr7\Response;
 use GuzzleHttp\Psr7\ServerRequest;
 use PHPUnit\Framework\TestCase;
 use Psr\Http\Message\ServerRequestInterface as IRequest;
+use Tests\Models\OperandCollection;
 
 class ControllerActionTest extends TestCase
 {
