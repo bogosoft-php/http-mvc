@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace Bogosoft\Http\Mvc;
 
-use Psr\Http\Message\ServerRequestInterface as IServerRequest;
+use Psr\Http\Message\ServerRequestInterface as IRequest;
 
 /**
  * An action that, when executed, will generate a result indicating that the
@@ -17,7 +17,7 @@ class NotFoundAction implements IAction
     /**
      * @inheritDoc
      */
-    function execute(IServerRequest $request)
+    function execute(IRequest $request)
     {
         return new NotFoundResult();
     }

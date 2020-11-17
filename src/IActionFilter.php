@@ -2,7 +2,7 @@
 
 namespace Bogosoft\Http\Mvc;
 
-use Psr\Http\Message\ServerRequestInterface as IServerRequest;
+use Psr\Http\Message\ServerRequestInterface as IRequest;
 
 /**
  * A strategy for filtering either the input to, or output from, an action.
@@ -12,11 +12,10 @@ use Psr\Http\Message\ServerRequestInterface as IServerRequest;
 interface IActionFilter
 {
     /**
-     * @param  IServerRequest $request An HTTP request to be filtered.
-     * @param  IAction        $action  An action to be called in the event
-     *                                 that no filters return an action result.
-     * @return mixed                   The result of filtering the given HTTP
-     *                                 request.
+     * @param  IRequest $request An HTTP request to be filtered.
+     * @param  IAction  $action  An action to be called in the event that no
+     *                           filters return an action result. The result
+     *                           of filtering the given HTTP request.
      */
-    function apply(IServerRequest $request, IAction $action);
+    function apply(IRequest $request, IAction $action);
 }

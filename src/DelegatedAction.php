@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace Bogosoft\Http\Mvc;
 
-use Psr\Http\Message\ServerRequestInterface as IServerRequest;
+use Psr\Http\Message\ServerRequestInterface as IRequest;
 
 /**
  * An implementation of the {@see IAction} contract that delegates action
@@ -12,7 +12,7 @@ use Psr\Http\Message\ServerRequestInterface as IServerRequest;
  *
  * The delegate is expected to be of the form:
  *
- * - fn({@see IServerRequest}): {@see mixed}
+ * - fn({@see IRequest}): {@see mixed}
  *
  * This class cannot be inherited.
  *
@@ -37,7 +37,7 @@ final class DelegatedAction implements IAction
     /**
      * @inheritDoc
      */
-    function execute(IServerRequest $request)
+    function execute(IRequest $request)
     {
         return ($this->delegate)($request);
     }

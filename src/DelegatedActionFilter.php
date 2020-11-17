@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace Bogosoft\Http\Mvc;
 
-use Psr\Http\Message\ServerRequestInterface as IServerRequest;
+use Psr\Http\Message\ServerRequestInterface as IRequest;
 
 /**
  * An implementation of the {@see IActionFilter} contract that delegates
@@ -12,7 +12,7 @@ use Psr\Http\Message\ServerRequestInterface as IServerRequest;
  *
  * The delegate is expected to be of the form:
  *
- * - fn({@see IServerRequest}, {@see IAction}): {@see mixed}
+ * - fn({@see IRequest}, {@see IAction}): {@see mixed}
  *
  * This class cannot be inherited.
  *
@@ -37,7 +37,7 @@ final class DelegatedActionFilter implements IActionFilter
     /**
      * @inheritDoc
      */
-    function apply(IServerRequest $request, IAction $action)
+    function apply(IRequest $request, IAction $action)
     {
         return ($this->delegate)($request, $action);
     }

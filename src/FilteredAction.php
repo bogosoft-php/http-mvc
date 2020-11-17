@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace Bogosoft\Http\Mvc;
 
 use Iterator;
-use Psr\Http\Message\ServerRequestInterface as IServerRequest;
+use Psr\Http\Message\ServerRequestInterface as IRequest;
 
 /**
  * Represents an action with zero or more action filters applied to it.
@@ -35,7 +35,7 @@ final class FilteredAction implements IAction
     /**
      * @inheritDoc
      */
-    function execute(IServerRequest $request)
+    function execute(IRequest $request)
     {
         /** @noinspection PhpUnhandledExceptionInspection */
         $filters = $this->filters->getIterator();
@@ -51,7 +51,7 @@ final class FilteredAction implements IAction
                 $this->filters = $filters;
             }
 
-            function execute(IServerRequest $request)
+            function execute(IRequest $request)
             {
                 return $this->filters->valid()
                     ? $this->next()->apply($request, $this)
