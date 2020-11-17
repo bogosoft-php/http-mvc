@@ -23,5 +23,5 @@ interface IRouter
      *                                     given HTTP request cannot be
      *                                     converted into an action context.
      */
-    function route(IRequest $request): ?ActionContext;
+    function route(IRequest &$request): ?ActionContext;
 }
