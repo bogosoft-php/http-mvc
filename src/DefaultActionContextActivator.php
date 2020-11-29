@@ -20,11 +20,6 @@ use Psr\Http\Message\ServerRequestInterface as IRequest;
  */
 class DefaultActionContextActivator implements IActionContextActivator
 {
-    private IControllerFactory $controllers;
-    private IParameterMatcher $matcher;
-    private ISession $session;
-    private IViewFactory $views;
-
     /**
      * Create a new default action context activator.
      *
@@ -37,16 +32,13 @@ class DefaultActionContextActivator implements IActionContextActivator
      * @param ISession|null      $session     A session.
      */
     function __construct(
-        IControllerFactory $controllers,
-        IParameterMatcher $matcher,
-        IViewFactory $views,
-        ISession $session = null
+        private IControllerFactory $controllers,
+        private IParameterMatcher $matcher,
+        private IViewFactory $views,
+        private ?ISession $session = null
         )
     {
-        $this->controllers = $controllers;
-        $this->matcher     = $matcher;
-        $this->session     = $session ?? new DefaultSession();
-        $this->views       = $views;
+        $this->session = $session ?? new DefaultSession();
     }
 
     /**
@@ -76,9 +68,9 @@ class DefaultActionContextActivator implements IActionContextActivator
      *
      * @param  IRequest   $request An HTTP request from which a model will be
      *                             extracted.
-     * @return mixed|null          An extracted model.
+     * @return mixed               An extracted model.
      */
-    protected function extractViewModel(IRequest $request)
+    protected function extractViewModel(IRequest $request): mixed
     {
         return null;
     }

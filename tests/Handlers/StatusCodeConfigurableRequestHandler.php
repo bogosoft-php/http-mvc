@@ -11,11 +11,8 @@ use Psr\Http\Server\RequestHandlerInterface as IRequestHandler;
 
 final class StatusCodeConfigurableRequestHandler implements IRequestHandler
 {
-    private int $code;
-
-    function __construct(int $code)
+    function __construct(private int $code)
     {
-        $this->code = $code;
     }
 
     /**

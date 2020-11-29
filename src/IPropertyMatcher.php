@@ -26,7 +26,7 @@ interface IPropertyMatcher
     function tryMatch(
         ReflectionProperty $rp,
         IRequest $request,
-        &$result
+        mixed &$result
         )
         : bool;
 }

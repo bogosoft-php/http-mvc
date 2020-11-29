@@ -20,5 +20,11 @@ interface IViewFilter
      * @return IView|null            The result of filtering a view creation
      *                               request.
      */
-    function apply(string $name, $model, array $params, IViewFactory $factory): ?IView;
+    function apply(
+        string $name,
+        mixed $model,
+        array $params,
+        IViewFactory $factory
+        )
+        : ?IView;
 }

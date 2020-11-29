@@ -12,11 +12,8 @@ use Bogosoft\Http\Mvc\Tests\Models\Product;
 
 class ProductsController extends Controller
 {
-    private IProductRepository $repository;
-
-    function __construct(IProductRepository $repository)
+    function __construct(private IProductRepository $repository)
     {
-        $this->repository = $repository;
     }
 
     function add(Product $product): IActionResult

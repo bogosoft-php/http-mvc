@@ -15,8 +15,6 @@ use Psr\Http\Message\ResponseInterface as IResponse;
  */
 class ObjectResult implements IActionResult
 {
-    /** @var mixed */
-    private $data;
     private ISerializer $serializer;
 
     /**
@@ -25,9 +23,8 @@ class ObjectResult implements IActionResult
      * @param mixed $data Data to be serialized when the new result is applied
      *                    to an HTTP response.
      */
-    function __construct($data)
+    function __construct(private mixed $data)
     {
-        $this->data = $data;
     }
 
     /**

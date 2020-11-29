@@ -14,16 +14,13 @@ use Psr\Http\Message\ResponseInterface as IResponse;
  */
 class StatusCodeResult implements IActionResult
 {
-    private int $code;
-
     /**
      * Create a new status code action result.
      *
      * @param int $code A status code to be applied to an HTTP response.
      */
-    function __construct(int $code)
+    function __construct(private int $code)
     {
-        $this->code = $code;
     }
 
     /**

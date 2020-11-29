@@ -17,7 +17,7 @@ class NotFoundAction implements IAction
     /**
      * @inheritDoc
      */
-    function execute(IRequest $request)
+    function execute(IRequest $request): NotFoundResult
     {
         return new NotFoundResult();
     }

@@ -28,7 +28,7 @@ interface IParameterMatcher
     function tryMatch(
         ReflectionParameter $rp,
         IRequest $request,
-        &$result
+        mixed &$result
         )
         : bool;
 }

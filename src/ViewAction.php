@@ -17,12 +17,6 @@ use Psr\Http\Message\ServerRequestInterface as IRequest;
  */
 class ViewAction implements IAction
 {
-    /** @var mixed */
-    private $model;
-    private string $name;
-    private array $parameters;
-    private IViewFactory $views;
-
     /**
      * Create a new view action.
      *
@@ -33,18 +27,19 @@ class ViewAction implements IAction
      *                                 pairs.
      * @param IViewFactory $views      A strategy for creating views.
      */
-    function __construct(string $name, $model, array $parameters, IViewFactory $views)
+    function __construct(
+        private string $name,
+        private mixed $model,
+        private array $parameters,
+        private IViewFactory $views
+        )
     {
-        $this->model      = $model;
-        $this->name       = $name;
-        $this->parameters = $parameters;
-        $this->views      = $views;
     }
 
     /**
      * @inheritDoc
      */
-    function execute(IRequest $request)
+    function execute(IRequest $request): NotFoundResult|ViewResult
     {
         $view = $this->views->createView($this->name, $this->model, $this->parameters);
 

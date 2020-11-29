@@ -14,18 +14,14 @@ use Psr\Http\Message\ResponseInterface as IResponse;
  */
 class MethodNotAllowedResult extends StatusCodeResult
 {
-    private array $allowed;
-
     /**
      * Create a new method not allowed action result.
      *
-     * @param array $allowed An array of acceptable methods.
+     * @param string[] $allowed An array of acceptable methods.
      */
-    function __construct(array $allowed)
+    function __construct(private array $allowed)
     {
         parent::__construct(405);
-
-        $this->allowed = $allowed;
     }
 
     /**

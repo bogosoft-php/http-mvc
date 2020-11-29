@@ -16,7 +16,6 @@ use Psr\Http\Message\ServerRequestInterface as IRequest;
  */
 final class FilteredAction implements IAction
 {
-    private IAction $action;
     public ActionFilterQueue $filters;
 
     /**
@@ -26,9 +25,11 @@ final class FilteredAction implements IAction
      * @param iterable $filters Zero or more filters to be applied to the
      *                          given action upon its execution.
      */
-    function __construct(IAction $action, iterable $filters = [])
+    function __construct(
+        private IAction $action,
+        iterable $filters = []
+        )
     {
-        $this->action  = $action;
         $this->filters = new ActionFilterQueue($filters);
     }
 

@@ -14,11 +14,6 @@ use ReflectionMethod;
  */
 class ControllerAction implements IAction
 {
-    private string $class;
-    private IControllerFactory $controllers;
-    private string $method;
-    private IParameterMatcher $matcher;
-
     /**
      * Create a new controller action.
      *
@@ -30,22 +25,18 @@ class ControllerAction implements IAction
      * @param IParameterMatcher  $matcher     A parameter matching strategy.
      */
     function __construct(
-        IControllerFactory $controllers,
-        string $class,
-        string $method,
-        IParameterMatcher $matcher
+        private IControllerFactory $controllers,
+        private string $class,
+        private string $method,
+        private IParameterMatcher $matcher
         )
     {
-        $this->class       = $class;
-        $this->controllers = $controllers;
-        $this->matcher     = $matcher;
-        $this->method      = $method;
     }
 
     /**
      * @inheritDoc
      */
-    function execute(IRequest $request)
+    function execute(IRequest $request): mixed
     {
         $controller = $this->controllers->createController($this->class, $request);
 

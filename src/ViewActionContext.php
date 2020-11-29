@@ -12,7 +12,7 @@ namespace Bogosoft\Http\Mvc;
  */
 class ViewActionContext extends ActionContext
 {
-    static function __set_state($data)
+    static function __set_state($data): ViewActionContext
     {
         $context = new ViewActionContext();
 

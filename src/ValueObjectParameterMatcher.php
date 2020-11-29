@@ -1,10 +1,14 @@
 <?php
 
+/** @noinspection PhpUnhandledExceptionInspection */
+
 declare(strict_types=1);
 
 namespace Bogosoft\Http\Mvc;
 
 use Psr\Http\Message\ServerRequestInterface as IRequest;
+use ReflectionClass;
+use ReflectionNamedType;
 use ReflectionParameter;
 use ReflectionProperty;
 
@@ -16,7 +20,13 @@ use ReflectionProperty;
  */
 class ValueObjectParameterMatcher implements IParameterMatcher
 {
-    private IPropertyMatcher $propertyMatcher;
+    private static function getClass(ReflectionParameter $rp): ?ReflectionClass
+    {
+        return null !== ($rt = $rp->getType())
+            && $rt instanceof ReflectionNamedType
+            ? new ReflectionClass($rt->getName())
+            : null;
+    }
 
     /**
      * Create a new value object parameter matcher.
@@ -25,9 +35,8 @@ class ValueObjectParameterMatcher implements IParameterMatcher
      *                                          when hydrating a value object
      *                                          with HTTP request data.
      */
-    function __construct(IPropertyMatcher $propertyMatcher)
+    function __construct(private IPropertyMatcher $propertyMatcher)
     {
-        $this->propertyMatcher = $propertyMatcher;
     }
 
     /**
@@ -35,7 +44,7 @@ class ValueObjectParameterMatcher implements IParameterMatcher
      */
     function tryMatch(ReflectionParameter $rp, IRequest $request, &$result): bool
     {
-        if (null === ($rc = $rp->getClass()))
+        if (null === ($rc = self::getClass($rp)))
             return false;
 
         $result = $rc->newInstance();

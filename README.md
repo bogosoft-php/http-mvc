@@ -1,6 +1,6 @@
 ## bogosoft/http-mvc
 
-A Model-View-Controller (MVC) implementation of contracts in the bogosoft/http-routing package.
+A PSR-compliant Model-View-Controller (MVC) library.
 
 #### Installation
 

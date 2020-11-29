@@ -42,8 +42,6 @@ class MvcMiddleware implements IMiddleware
         return new MvcMiddleware($params);
     }
 
-    private MvcMiddlewareParameters $params;
-
     /**
      * Create a new MVC middleware component.
      *
@@ -52,9 +50,8 @@ class MvcMiddleware implements IMiddleware
      *                                        MVC middleware component can be
      *                                        influenced.
      */
-    function __construct(MvcMiddlewareParameters $params)
+    function __construct(private MvcMiddlewareParameters $params)
     {
-        $this->params = $params;
     }
 
     private function handleObjectResult(

@@ -14,17 +14,14 @@ use Psr\Http\Message\ResponseInterface as IResponse;
  */
 class ViewResult implements IActionResult
 {
-    private IView $view;
-
     /**
      * Create a new view result.
      *
      * @param IView $view A view to be rendered to the output of an HTTP
      *                    response.
      */
-    function __construct(IView $view)
+    function __construct(private IView $view)
     {
-        $this->view = $view;
     }
 
     /**

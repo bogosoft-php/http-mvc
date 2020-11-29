@@ -77,7 +77,7 @@ class ActionFilterQueue implements IteratorAggregate
     /**
      * @inheritDoc
      */
-    public function getIterator()
+    public function getIterator(): iterable
     {
         yield from $this->filters;
     }

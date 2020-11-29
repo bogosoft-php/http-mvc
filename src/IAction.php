@@ -19,5 +19,5 @@ interface IAction
      * @return mixed             The result of executing the current action
      *                           against the given HTTP request.
      */
-    function execute(IRequest $request);
+    function execute(IRequest $request): mixed;
 }

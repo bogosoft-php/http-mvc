@@ -22,19 +22,17 @@ use Iterator;
  */
 final class FilteredViewFactory implements IViewFactory
 {
-    private iterable $filters;
-    private IViewFactory $source;
-
     /**
      * Create a new filtered view factory.
      *
      * @param IViewFactory $source  A source view factory.
      * @param iterable     $filters A sequence of {@see IViewFilter} objects.
      */
-    function __construct(IViewFactory $source, iterable $filters)
+    function __construct(
+        private IViewFactory $source,
+        private iterable $filters
+        )
     {
-        $this->filters = $filters;
-        $this->source  = $source;
     }
 
     /**

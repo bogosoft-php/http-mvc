@@ -14,8 +14,9 @@ interface IActionFilter
     /**
      * @param  IRequest $request An HTTP request to be filtered.
      * @param  IAction  $action  An action to be called in the event that no
-     *                           filters return an action result. The result
-     *                           of filtering the given HTTP request.
+     *                           filters return an action result.
+     * @returns mixed            The result of filtering the given HTTP
+     *                           request.
      */
     function apply(IRequest $request, IAction $action);
 }

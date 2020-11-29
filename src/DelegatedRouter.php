@@ -33,7 +33,7 @@ final class DelegatedRouter implements IRouter
     /**
      * @inheritDoc
      */
-    function route(IRequest $request): ?ActionContext
+    function route(IRequest &$request): ?ActionContext
     {
         return ($this->delegate)($request);
     }

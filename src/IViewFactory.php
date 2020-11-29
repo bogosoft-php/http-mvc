@@ -21,5 +21,5 @@ interface IViewFactory
      *                                {@see null} if a view could not be
      *                                created from the given parameters.
      */
-    function createView(string $name, $model, array $parameters): ?IView;
+    function createView(string $name, mixed $model, array $parameters): ?IView;
 }

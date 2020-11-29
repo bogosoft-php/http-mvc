@@ -9,18 +9,14 @@ use Psr\Http\Message\ServerRequestInterface as IServerRequest;
 
 class ObjectAction implements IAction
 {
-    /** @var mixed */
-    private $data;
-
-    function __construct($data)
+    function __construct(private mixed $data)
     {
-        $this->data = $data;
     }
 
     /**
      * @inheritDoc
      */
-    function execute(IServerRequest $request)
+    function execute(IServerRequest $request): mixed
     {
        return $this->data;
     }

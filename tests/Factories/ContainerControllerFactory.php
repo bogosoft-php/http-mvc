@@ -11,11 +11,8 @@ use Psr\Http\Message\ServerRequestInterface as IRequest;
 
 class ContainerControllerFactory implements IControllerFactory
 {
-    private IContainer $container;
-
-    function __construct(IContainer $container)
+    function __construct(private IContainer $container)
     {
-        $this->container = $container;
     }
 
     /**

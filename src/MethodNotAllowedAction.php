@@ -13,22 +13,19 @@ use Psr\Http\Message\ServerRequestInterface as IRequest;
  */
 class MethodNotAllowedAction implements IAction
 {
-    private array $allowed;
-
     /**
      * Create a new method not allowed action.
      *
-     * @param array $allowed An array of allowed methods.
+     * @param string[] $allowed An array of allowed methods.
      */
-    function __construct(array $allowed)
+    function __construct(private array $allowed)
     {
-        $this->allowed = $allowed;
     }
 
     /**
      * @inheritDoc
      */
-    function execute(IRequest $request)
+    function execute(IRequest $request): MethodNotAllowedResult
     {
         return new MethodNotAllowedResult($this->allowed);
     }

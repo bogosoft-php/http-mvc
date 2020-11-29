@@ -22,16 +22,6 @@ class ControllerActionContext extends ActionContext
     }
 
     /**
-     * @var string Get or set the name of a controller class.
-     */
-    public string $controllerClass;
-
-    /**
-     * @var string Get or set the name of a method on a controller.
-     */
-    public string $methodName;
-
-    /**
      * Create a new controller action context.
      *
      * @param string $controllerClass   A controller class name.
@@ -40,13 +30,10 @@ class ControllerActionContext extends ActionContext
      * @param array  $filterDefinitions An array of action filter definitions.
      */
     function __construct(
-        string $controllerClass,
-        string $methodName,
-        array $filterDefinitions = []
+        public string $controllerClass,
+        public string $methodName,
+        public array $filterDefinitions = []
         )
     {
-        $this->controllerClass   = $controllerClass;
-        $this->filterDefinitions = $filterDefinitions;
-        $this->methodName        = $methodName;
     }
 }

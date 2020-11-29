@@ -10,17 +10,14 @@ use Psr\Http\Message\ServerRequestInterface as IServerRequest;
 
 class SetStatusCodeAction implements IAction
 {
-    private int $code;
-
-    function __construct(int $code)
+    function __construct(private int $code)
     {
-        $this->code = $code;
     }
 
     /**
      * @inheritDoc
      */
-    function execute(IServerRequest $request)
+    function execute(IServerRequest $request): StatusCodeResult
     {
         return new StatusCodeResult($this->code);
     }

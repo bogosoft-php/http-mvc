@@ -12,18 +12,14 @@ namespace Bogosoft\Http\Mvc;
  */
 final class MethodNotAllowedActionContext extends ActionContext
 {
-    /** @var string[] */
-    private array $allowedMethods;
-
     /**
      * Create a new method-not-allowed action context.
      *
-     * @param array $allowedMethods An array of strings representing the
-     *                              names of allowed HTTP methods.
+     * @param string[] $allowedMethods An array of strings representing the
+     *                                 names of allowed HTTP methods.
      */
-    function __construct(array $allowedMethods)
+    function __construct(private array $allowedMethods)
     {
-        $this->allowedMethods = $allowedMethods;
     }
 
     /**

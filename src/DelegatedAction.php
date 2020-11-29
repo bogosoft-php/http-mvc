@@ -37,7 +37,7 @@ final class DelegatedAction implements IAction
     /**
      * @inheritDoc
      */
-    function execute(IRequest $request)
+    function execute(IRequest $request): mixed
     {
         return ($this->delegate)($request);
     }
