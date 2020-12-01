@@ -11,7 +11,11 @@ use Attribute;
  *
  * @package Bogosoft\Http\Mvc\Attributes
  */
-#[Attribute(Attribute::TARGET_CLASS | Attribute::TARGET_METHOD)]
+#[Attribute(
+    Attribute::IS_REPEATABLE
+    | Attribute::TARGET_CLASS
+    | Attribute::TARGET_METHOD
+    )]
 class Route
 {
     /**
