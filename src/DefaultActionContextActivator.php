@@ -115,8 +115,12 @@ class DefaultActionContextActivator implements IActionContextActivator
             if (!$controller->isLocked())
             {
                 $controller->setRequest($request);
-                $controller->setSession($this->session);
-                $controller->setViewFactory($this->views);
+
+                if ($controller instanceof MvcController)
+                {
+                    $controller->setSession($this->session);
+                    $controller->setViewFactory($this->views);
+                }
 
                 $controller->lock();
             }

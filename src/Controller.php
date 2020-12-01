@@ -17,8 +17,6 @@ abstract class Controller
 {
     private bool $locked = false;
     private IRequest $request;
-    private ISession $session;
-    private IViewFactory $views;
 
     /**
      * Indicate that a request for a resource was not correctly formed.
@@ -38,16 +36,6 @@ abstract class Controller
     protected function getRequest(): IRequest
     {
         return $this->request;
-    }
-
-    /**
-     * Get the session associated with the current controller.
-     *
-     * @return ISession Session data.
-     */
-    protected function getSession(): ISession
-    {
-        return $this->session;
     }
 
     /**
@@ -100,58 +88,5 @@ abstract class Controller
             throw new RuntimeException('Controller is locked.');
 
         $this->request = $request;
-    }
-
-    /**
-     * Set session data on the current controller.
-     *
-     * @param ISession $session Session data.
-     *
-     * @throws RuntimeException if the controller has already been locked.
-     */
-    function setSession(ISession $session): void
-    {
-        if ($this->locked)
-            throw new RuntimeException('Controller is locked.');
-
-        $this->session = $session;
-    }
-
-    /**
-     * Associate a view factory with the current controller.
-     *
-     * @param IViewFactory $views A view factory.
-     *
-     * @throws RuntimeException if the controller has already been locked.
-     */
-    function setViewFactory(IViewFactory $views): void
-    {
-        if ($this->locked)
-            throw new RuntimeException('Controller is locked.');
-
-        $this->views = $views;
-    }
-
-    /**
-     * Render a view by its name.
-     *
-     * @param  string     $name       The name of a view to be rendered.
-     * @param  mixed|null $model      A model object to be projected through
-     *                                a view.
-     * @param  array      $parameters An array of parameters as key-value
-     *                                pairs.
-     * @return ViewResult             A new view result.
-     *
-     * @throws ViewNotFoundException when the given name cannot be resolved
-     *                               to a view.
-     */
-    protected function view(string $name, $model = null, array $parameters = []): ViewResult
-    {
-        $view = $this->views->createView($name, $model, $parameters);
-
-        if (null === $view)
-            throw new ViewNotFoundException($name);
-
-        return new ViewResult($view);
     }
 }
