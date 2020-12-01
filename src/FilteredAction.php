@@ -36,7 +36,7 @@ final class FilteredAction implements IAction
     /**
      * @inheritDoc
      */
-    function execute(IRequest $request)
+    function execute(IRequest $request): mixed
     {
         /** @noinspection PhpUnhandledExceptionInspection */
         $filters = $this->filters->getIterator();
@@ -52,7 +52,7 @@ final class FilteredAction implements IAction
                 $this->filters = $filters;
             }
 
-            function execute(IRequest $request)
+            function execute(IRequest $request): mixed
             {
                 return $this->filters->valid()
                     ? $this->next()->apply($request, $this)
